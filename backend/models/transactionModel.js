@@ -13,7 +13,6 @@ const Transaction = db.define('transaction',{
 },{
     freezeTableName:true
 });
-
 export default Transaction;
 
 (async()=>{

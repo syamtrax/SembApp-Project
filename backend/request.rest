@@ -9,10 +9,10 @@ Content-Type: application/json
 
 {
     "label" : "Berhasil",
-    "idtrans" : "IDTrans04_23102022",
-    "paymenttype" : "Transfer",
-    "price" : 235000,
-    "date" : "2022-10-23",
+    "idtrans" : "IDTrans02_24102022",
+    "paymenttype" : "QRIS",
+    "price" : 300000,
+    "date" : "2022-10-24",
     "member" : "Member"
 
 }
@@ -25,14 +25,20 @@ Content-Type: application/json
     "label" : "Berhasil",
     "idtrans" : "IDTrans01_23102022",
     "paymenttype" : "Cash",
-    "price" : 100.000,
+    "price" : 100000,
     "date" : "2022-10-23",
     "member" : "Non-Member"
 
 }
 
 ###
-DELETE http://localhost:5000/transaction/2
+DELETE http://localhost:5000/transaction/5
 
 ###
-GET http://localhost:5000/transaction/total
+GET http://localhost:5000/total
+
+###
+GET http://localhost:5000/totalprice
+
+###
+GET http://localhost:5000/totalpricetoday

@@ -8,10 +8,14 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [transaction, setTransaction] = useState([]);
+  const [earning, setEarning] = useState(0);
+
 
   useEffect(()=>{
     getTransaction();
-  },[]);
+    getTotalTransaction();
+    getSumTransaction();
+  },[])
 
   const [totaltrans, setTotalTrans] = useState(0);
 
@@ -21,8 +25,13 @@ const Dashboard = () => {
   } 
 
   const getTotalTransaction = async() =>{
-    const response = await axios.get('http://localhost:5000/transaction/total');
-    console.log(response.data);
+    const response = await axios.get('http://localhost:5000/total');
+    setTotalTrans(response.data);
+  }
+
+  const getSumTransaction = async() => {
+    const response = await axios.get('http://localhost:5000/totalprice')
+    setEarning(response.data)
   }
 
   return (
@@ -63,7 +72,7 @@ const Dashboard = () => {
             <div className='p-4 bg-white rounded-md items-center shadow-md'>
               <div className = "">Total Penjualan</div>
                 <div className = "flex justify-between">
-                  <div className = "flex-col font-bold text-2xl content-center items-center">5.000.000</div>
+                  <div className = "flex-col font-bold text-2xl content-center items-center">Rp {earning}</div>
                   <div className = "">
                     <div className = "text-sm text-hijau">+36%</div>
                     <div className = "text-xs text-abu">dari kemarin</div>
@@ -73,7 +82,7 @@ const Dashboard = () => {
             <div className='p-4 bg-white rounded-md items-center shadow-md'>
               <div className = "">Total Transaksi</div>
                 <div className = "flex justify-between">
-                  <div className = "flex-col font-bold text-2xl content-center items-center"> kali</div>
+                  <div className = "flex-col font-bold text-2xl content-center items-center">{totaltrans} kali</div>
                   <div className = "">
                     <div className = "text-sm text-hijau">+36%</div>
                     <div className = "text-xs text-abu">dari kemarin</div>
@@ -93,7 +102,7 @@ const Dashboard = () => {
               <div className="text-base text-birumuda"> Lihat semua transaksi</div>
             </div>
             <div className="">
-              <table className="flex table-fixed justify-center py-4">
+              <table className="flex table-fixed justify-center py-2 overflow-y-auto h-80">
                 <tbody>
                   {transaction.map((trans)=>(
                     <tr key={trans.id} className = "border-b-2 h-16">

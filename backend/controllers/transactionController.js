@@ -4,7 +4,9 @@ import { response } from "express";
 
 export const getTransaction = async(req, res) =>{
     try {
-        const response = await Transaction.findAll();
+        const response = await Transaction.findAll({
+            order:[['createdAt','DESC']]
+        });
         res.status(200).json(response);
     } catch (error) {
         console.log(error.message);
@@ -61,17 +63,21 @@ export const deleteTransaction = async(req, res) =>{
 
 export const totalTransaction = async(req, res) =>{
     try {
-        const Total = await Transaction.count({
-            where:{
-                id:{
-                    [Op.gt]:1
-                }
-            }
-        })
-        res.status(200).json(Total);
+        const total = await Transaction.count()
+        res.status(200).json(total);
     } catch (error) {
         console.log(error.message);
     }
 }
+
+export const sumTransaction = async(req, res) =>{
+    try {
+        const total = await Transaction.sum('price')
+        res.status(200).json(total);
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 
 
