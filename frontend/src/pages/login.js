@@ -6,7 +6,7 @@ const Login = () => {
     <div className="relative w-full h-screen flex items-center bg-cover">
         <img src={loginBackground} className="absolute w-full h-full object-cover" />
 
-            <div className="w-1/4 p-6 m-auto bg-white rounded-md shadow-md">
+            <div className="w-1/4 p-6 m-auto bg-white rounded-md shadow-md z-10">
                 <h1 className="text-4xl font-bold text-center font-inter">
                    SembApp
                 </h1>
