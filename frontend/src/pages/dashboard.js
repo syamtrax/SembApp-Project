@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Navbar from '../components/navbar.js';
 import contohGambar from "../assets/fiqri-aziz-octavian-ONlW_Ye8HcQ-unsplash.jpg";
 import fotoprofil from "../assets/Ellipse 12.png";
+import kasir from "../assets/Group.png"
 import axios from "axios";
 
 
@@ -35,11 +36,12 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="bg-abumuda w-full">
+    <div className="bg-abumuda w-full flex justify-center max-h-screen">
       <div className='absolute'>
         <Navbar/>
       </div>
       <div className="container py-16">
+        <div className='content-center items-center '>
         <div className = "pt-6">Beranda</div>
         <div className = "text-2xl font-bold pb-4">Halaman Dashboard</div>
         <div className = "relative">
@@ -58,7 +60,7 @@ const Dashboard = () => {
           </div>
         </div>
         <div className='flex'>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-8 w-5/6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-4 w-5/6">
             <div className='p-4 bg-white rounded-md items-center shadow-md'>
               <div className = "">Penjualan Hari Ini</div>
               <div className = "flex justify-between">
@@ -90,10 +92,12 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
-            <div className='p-2 w-1/6 ml-8 bg-white rounded-md'></div>
+            <div className='p-2 w-1/6 ml-4 bg-white rounded-md shadow-md flex items-center content-center justify-center align-middle'>
+              <img src={kasir} className = "h-16 content-center justify-center items-center"></img>
+            </div>
         </div>
         <div className = "flex mt-4 justify-between gap-4">
-          <div className = "bg-white w-3/4 rounded-md shadow-md">
+          <div className = "bg-white w-3/4 h-full rounded-md shadow-md">
             <div className = "flex justify-between p-3">
               <div>
                 <div className = "text-lg font-bold">Riwayat Transaksi</div>
@@ -106,7 +110,7 @@ const Dashboard = () => {
                 <tbody>
                   {transaction.map((trans)=>(
                     <tr key={trans.id} className = "border-b-2 h-16">
-                    <td className = "w-40 ">{trans.label}</td>
+                    <td className = "w-40 text-center">{trans.label}</td>
                     <td className="w-56">
                       <div className="font-bold">{trans.idtrans}</div>
                       <div>{trans.paymenttype}</div>
@@ -123,12 +127,31 @@ const Dashboard = () => {
               </table> 
             </div>
           </div>
-          <div className = "w-1/4">
-            <div className="bg-white mb-4 h-52 shadow-md rounded-md">
-
+          <div className = "w-1/4 gap-4">
+            <div className="bg-white h-2/3 shadow-md rounded-md">
+              <div className = "h-1/4 bg-birumuda text-white text-center justify-center items-center flex rounded-t-md font-bold">Notifikasi Produk</div>
+              <table className='flex table-fixed justify-center py-2'>
+                <thead>
+                  <tr>
+                    <th className='w-24 flex justify-start pl-2'>Nama</th>
+                    <th className = "w-16 ">Stok</th>
+                    <th className = "w-16 ">Kadaluarsa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
-            <div className = "bg-white h-52 shadow-md rounded-md">hai</div>
+            <div className = "bg-white h-1/3 shadow-md rounded-md">
+              <div className = "h-1/3 bg-birumuda text-white text-center justify-center items-center flex rounded-t-md font-bold">Notifikasi Dokumen</div>
+            </div>
           </div>
+        </div>
         </div>
       </div>
       
