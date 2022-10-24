@@ -268,6 +268,7 @@ module.exports = {
         '"Segoe UI Emoji"',
         '"Segoe UI Symbol"',
         '"Noto Color Emoji"',
+        '"Inter',
       ],
       serif: [
         "ui-serif",
@@ -288,7 +289,7 @@ module.exports = {
         "monospace",
       ],
       nunito: ["nunito", "sans-serif"],
-      inter : ["inter"]
+      inter : ["inter", "sans-serif"]
     },
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],

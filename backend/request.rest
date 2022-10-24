@@ -42,3 +42,23 @@ GET http://localhost:5000/totalprice
 
 ###
 GET http://localhost:5000/totalpricetoday
+
+###
+GET http://localhost:5000/user
+
+###
+GET http://localhost:5000/user/2
+
+###
+POST http://localhost:5000/user
+Content-Type: application/json
+
+{
+    "namaToko" : "Cahya Abadi",
+    "alamatToko" : "Pogung Kidul, Sinduadi, Mlati, Sleman, DI Yogyakarta",
+    "namaPengguna" : "Cahya",
+    "sandi" : "hadidsukacahya123",
+    "email" : "hadidsukacahya@gmail.com",
+    "telp" : "087802558582",
+    "img": null
+}

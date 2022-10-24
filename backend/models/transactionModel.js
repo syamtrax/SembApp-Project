@@ -11,7 +11,7 @@ const Transaction = db.define('transaction',{
     date : DataTypes.DATE,
     member : DataTypes.STRING
 },{
-    freezeTableName:true
+    freezeTableName: true
 });
 export default Transaction;
 
