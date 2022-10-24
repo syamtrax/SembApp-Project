@@ -48,7 +48,7 @@ const Dashboard = () => {
               <div class="text-2xl text-white w-full text-center">Selamat Datang Cahya di Toko Cahya Abadi</div>
             </div>
         </div>   
-        <div className="flex my-4 gap-6">
+        <div className="flex my-3 gap-6">
           <div className = "w-1/2 bg-white shadow-md rounded-md flex h-8">
             <div className="w-full text-center items-center content-center">Total Dokumen : </div>
           </div>
