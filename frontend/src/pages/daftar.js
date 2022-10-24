@@ -47,7 +47,7 @@ function Daftar() {
                 </label>
                 <div className="flex items-center justify-evenly">
                   <input
-                    className="border-2 rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
+                    className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="password"
                     type="text"
                     name="password"
@@ -59,7 +59,7 @@ function Daftar() {
                     Nama Toko
                   </label>
                   <input
-                    className="border-2 rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
+                    className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="toko"
                     type="text"
                     name="toko"
@@ -71,7 +71,7 @@ function Daftar() {
                     Alamat Toko
                   </label>
                   <input
-                    className="border-2 rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
+                    className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="alamat"
                     type="text"
                     name="alamat"
@@ -83,7 +83,7 @@ function Daftar() {
                     No.Telepon
                   </label>
                   <input
-                    className="border-2 rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
+                    className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="nomor"
                     type="number"
                     name="nomor"
