@@ -1,5 +1,5 @@
 import React from 'react'
-import loginBackground from '../assets/bgLogin.jpg'
+import loginBackground from '../assets/backgroundLogin.jpg'
 
 const Login = () => {
   return (
