@@ -18,7 +18,6 @@ const Dashboard = () => {
   const [totaltrans, setTotalTrans] = useState(0);
   const getTransaction = async() =>{
     const response = await axios.get('http://localhost:5000/transaction');
-    const value = response.data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     setTransaction(response.data);
 
   } 
@@ -29,7 +28,9 @@ const Dashboard = () => {
   };
   const getSumTransaction = async () => {
     const response = await axios.get("http://localhost:5000/totalprice");
-    setEarning(response.data);
+    const value = response.data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+    setEarning(value);
   };
 
   return (
@@ -48,7 +49,7 @@ const Dashboard = () => {
               <div class="text-2xl text-white w-full text-center">Selamat Datang Cahya di Toko Cahya Abadi</div>
             </div>
         </div>   
-        <div className="flex my-3 gap-6">
+        <div className="flex my-4 gap-6">
           <div className = "w-1/2 bg-white shadow-md rounded-md flex h-8">
             <div className="w-full text-center items-center content-center">Total Dokumen : </div>
           </div>
