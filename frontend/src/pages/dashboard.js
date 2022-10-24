@@ -9,7 +9,7 @@ import axios from "axios";
 
 const Dashboard = () => {
   const [transaction, setTransaction] = useState([]);
-  const [earning, setEarning] = useState(0);
+  const [earning, setEarning] = useState("");
 
 
   useEffect(()=>{
@@ -22,7 +22,9 @@ const Dashboard = () => {
 
   const getTransaction = async() =>{
     const response = await axios.get('http://localhost:5000/transaction');
+    const value = response.data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     setTransaction(response.data);
+
   } 
 
   const getTotalTransaction = async() =>{
@@ -32,7 +34,8 @@ const Dashboard = () => {
 
   const getSumTransaction = async() => {
     const response = await axios.get('http://localhost:5000/totalprice')
-    setEarning(response.data)
+    const value = response.data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    setEarning(value);
   }
 
   return (
@@ -116,7 +119,10 @@ const Dashboard = () => {
                       <div>{trans.paymenttype}</div>
                     </td>
                     <td className = "w-48">
-                      <div className="text-lg font-bold">Rp {trans.price}</div>
+                      <div className="text-lg font-bold">Rp {
+                        trans.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+                      }
+                      </div>
                       <div>{trans.date}</div>
                     </td>
                     <td className = "w-32">{trans.member}</td>
