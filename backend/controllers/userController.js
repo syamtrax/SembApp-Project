@@ -2,6 +2,7 @@ import User from "../models/userModel.js";
 import { Op } from "sequelize";
 import { response } from "express";
 
+/**Ambil semua data user */
 export const getUser = async(req, res) =>{
     try {
         const response = await User.findAll();
@@ -10,7 +11,7 @@ export const getUser = async(req, res) =>{
         console.log(error.message);
     }
 }
-
+/**Ambil data user berdasarkan ID */
 export const getUserByID = async(req, res) =>{
     try {
         const response = await User.findOne({
@@ -24,6 +25,7 @@ export const getUserByID = async(req, res) =>{
     }
 }
 
+/**Buat data user */
 export const createUser = async(req, res) =>{
     try {
         await User.create(req.body);
@@ -33,6 +35,7 @@ export const createUser = async(req, res) =>{
     }
 }
 
+/**update data user */
 export const updateUser = async(req, res) =>{
     try {
         await User.update(req.body,{
@@ -46,6 +49,7 @@ export const updateUser = async(req, res) =>{
     }
 }
 
+/**delete data user berdasarkan ID */
 export const deleteUser = async(req, res) =>{
     try {
         await User.destroy({
