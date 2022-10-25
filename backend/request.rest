@@ -1,7 +1,7 @@
 GET http://localhost:5000/transaction
 
 ###
-GET http://localhost:5000/transaction/2
+GET http://localhost:5000/transaction/1
 
 ###
 POST http://localhost:5000/transaction
@@ -28,11 +28,11 @@ Content-Type: application/json
     "price" : 100000,
     "date" : "2022-10-23",
     "member" : "Non-Member"
-
+    
 }
 
 ###
-DELETE http://localhost:5000/transaction/1
+DELETE http://localhost:5000/transaction/5
 
 ###
 GET http://localhost:5000/total
