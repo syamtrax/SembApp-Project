@@ -2,8 +2,32 @@ import React, { useState, useEffect } from "react";
 import backgroundDaftar from "../assets/Background Halaman Daftar.png";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function Daftar() {
+  const [namaPengguna, setUsername] = useState("");
+  const [sandi, setPassword] = useState("");
+  const [telp, setNotelp] = useState("");
+  const [namaToko, setNamatoko] = useState("");
+  const [alamatToko, setAlamat] = useState("");
+  const navigate = useNavigate();
+
+  const saveUser = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:5000/user", {
+        namaPengguna,
+        sandi,
+        telp,
+        namaToko,
+        alamatToko
+      });
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="grid grid-cols-2">
       <img src={backgroundDaftar} className="h-screen w-screen"></img>
@@ -22,6 +46,7 @@ function Daftar() {
             <h1 className="font-bold flex flex-col items-center text-5xl mt-1 mb-6">
               Daftar Toko
             </h1>
+            <form onSubmit={saveUser}>
             <div className="flex flex-col">
               <div className="flex flex-col">
                 <label
@@ -34,6 +59,8 @@ function Daftar() {
                   className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                   id="username"
                   type="text"
+                  value = {namaPengguna}
+                  onChange={(e) => setUsername(e.target.value)}
                   name="username"
                   placeholder="Masukkan Nama Pengguna"
                 />
@@ -49,6 +76,8 @@ function Daftar() {
                   <input
                     className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="password"
+                    value = {sandi}
+                    onChange={(e) => setPassword(e.target.value)}
                     type="text"
                     name="password"
                     placeholder="Masukkan Kata Sandi"
@@ -62,6 +91,8 @@ function Daftar() {
                     className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="toko"
                     type="text"
+                    value = {namaToko}
+                    onChange={(e) => setNamatoko(e.target.value)}
                     name="toko"
                     placeholder="Masukkan Nama Toko"
                   />
@@ -74,6 +105,8 @@ function Daftar() {
                     className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="alamat"
                     type="text"
+                    value={alamatToko}
+                    onChange={(e) => setAlamat(e.target.value)}
                     name="alamat"
                     placeholder="Masukkan Alamat Toko"
                   />
@@ -86,6 +119,8 @@ function Daftar() {
                     className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="nomor"
                     type="number"
+                    value={telp}
+                    onChange={(e) => setNotelp(e.target.value)}
                     name="nomor"
                     placeholder="Masukkan No.Telepon"
                   />
@@ -112,6 +147,7 @@ function Daftar() {
                 </div>
               </div>
             </div>
+            </form>
           </div>
         </div>
       </div>
