@@ -1,5 +1,4 @@
 GET http://localhost:5000/transaction
-
 ###
 GET http://localhost:5000/transaction/1
 
@@ -45,7 +44,7 @@ GET http://localhost:5000/totalpricetoday
 
 ###
 GET http://localhost:5000/user
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWFQZW5nZ3VuYSI6ImNhaHlhaHUiLCJpYXQiOjE2NjcxMzg1MzAsImV4cCI6MTY2NzEzODU0NX0.orirkDzJOtP_qp6zQrreCBtUb4q1NpBh-mMwruehOOU
 ###
 GET http://localhost:5000/user/2
 
@@ -56,9 +55,22 @@ Content-Type: application/json
 {
     "namaToko" : "Cahya Abadi",
     "alamatToko" : "Pogung Kidul, Sinduadi, Mlati, Sleman, DI Yogyakarta",
-    "namaPengguna" : "Cahya",
-    "sandi" : "hadidsukacahya123",
+    "namaPengguna" : "cahyahu",
+    "sandi" : "hadidsuka",
     "email" : "hadidsukacahya@gmail.com",
     "telp" : "087802558582",
     "img": null
 }
+###
+POST http://localhost:5000/login
+Content-Type: application/json
+
+{
+    "namaPengguna" : "cahyahu",
+    "sandi" : "hadidsuka"
+}
+####
+GET http://localhost:5000/token
+
+###
+DELETE http://localhost:5000/logout

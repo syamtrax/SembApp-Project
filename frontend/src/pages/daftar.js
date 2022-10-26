@@ -23,7 +23,7 @@ function Daftar() {
         namaToko,
         alamatToko,
       });
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.log(error);
     }

@@ -13,6 +13,7 @@ const User = db.define(
     email: DataTypes.STRING,
     telp: DataTypes.STRING,
     img: DataTypes.BLOB,
+    refresh_token : DataTypes.TEXT
   },
   {
     freezeTableName: true,
