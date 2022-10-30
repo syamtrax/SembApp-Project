@@ -1,8 +1,68 @@
-import React from "react";
+import { useState, useEffect, useRef} from "react";
+import axios from "axios";
 import loginBackground from "../assets/backgroundLogin.jpg";
+import {Link} from "react-router-dom";
+
 
 const Login = () => {
+  const userRef = useRef();
+  const errRef = useRef();
+
+  const [user, setUser] = useState("");
+  const [pwd, setPwd] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [checkedUsername, setCheckedUsername] = useState("");
+  const [checkedPassword, setCheckedPassword] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    userRef.current.focus();
+  }, []);
+
+  useEffect(() => {
+    setErrMsg('');
+  }, [user, pwd]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(user, pwd);
+    setUser('');
+    setPwd('');
+    setSuccess(true);
+  }
+
+  const validateUsername = async (username) =>{
+    try {
+      const res = await axios.get(`http://localhost:5000/user/${username}`);
+      console.log(res);
+      if(res.data.length === 0){
+        setErrMsg('Username not found');
+        errRef.current.focus();
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+  const validatePassword = (password) => {
+    if(password.length < 8){
+      setErrMsg('Password is incorrect');
+      errRef.current.focus();
+    }
+  }
+  }
+  
   return (
+    <>
+    {success ? (
+      <div>
+        <h1>Berhasil!</h1>
+        <p>Anda berhasil login!</p>
+        <a href ="#">
+          Masuk ke Halaman Utama
+        </a>
+        </div>
+     ) : (
+    
     <div className="relative w-full h-screen flex items-center bg-cover">
       <img
         src={loginBackground}
@@ -10,8 +70,11 @@ const Login = () => {
       />
 
       <div className="w-1/4 p-6 m-auto bg-white rounded-md shadow-md z-10">
+        <p ref = {errRef} className={errMsg ? "errMsg" : "offscreen"} aria-live="assertive">
+          {errMsg}
+        </p>
         <h1 className="text-4xl font-bold text-center font-inter">SembApp</h1>
-        <form className="mt-6">
+        <form onSubmit={handleSubmit} className="mt-6">
           <div className="mb-2">
             <label
               for="uname"
@@ -22,6 +85,11 @@ const Login = () => {
             <input
               type="text"
               className="block w-full px-4 py-3 mt-2 text-black bg-white border rounded-md focus:border-black"
+              ref = {userRef}
+              autoComplete="off"
+              value={user}
+              onChange={(e) => setUser(e.target.value)}
+              required
               placeholder="Nama Pengguna"
             />
           </div>
@@ -35,6 +103,9 @@ const Login = () => {
             <input
               type="password"
               className="block w-full px-4 py-3 mt-2 text-black bg-white border rounded-md focus:border-black"
+              value={pwd}
+              onChange={(e) => setPwd(e.target.value)}
+              required
               placeholder="Kata Sandi"
             />
           </div>
@@ -52,7 +123,7 @@ const Login = () => {
               </label>
             </div>
             <div className="flex items-center">
-              <a href="#" className="ml-2 text-sm font-medium text-sky-400">
+              <a href="#" className="ml-2 text-sm font-medium text-birumuda">
                 Lupa Kata Sandi?
               </a>
             </div>
@@ -67,12 +138,16 @@ const Login = () => {
         <p className="mt-8 text-xs font-light text-center text-gray-700">
           {" "}
           Belum memiliki toko?{" "}
-          <a href="#" className="font-medium text-sky-400 hover:underline">
+          <a href="#" className="font-medium text-birumuda hover:underline">
+            <Link to="/daftar">
             Daftarkan toko
+            </Link>
           </a>
         </p>
       </div>
     </div>
+    )}
+    </>
   );
 };
 
