@@ -202,7 +202,7 @@ const Dashboard = () => {
                           </td>
                           <td className="w-32">{trans.member}</td>
                           <td className="w-32">
-                            <button onClick={getUsers}>GET USER</button>
+                            <button onClick={getUsers}>Button</button>
                           </td>
                         </tr>
                       ))}
