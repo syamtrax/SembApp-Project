@@ -44,7 +44,7 @@ GET http://localhost:5000/totalpricetoday
 
 ###
 GET http://localhost:5000/user
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsIm5hbWFQZW5nZ3VuYSI6ImNhaHlhaHUiLCJpYXQiOjE2NjcxMzg1MzAsImV4cCI6MTY2NzEzODU0NX0.orirkDzJOtP_qp6zQrreCBtUb4q1NpBh-mMwruehOOU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsIm5hbWFQZW5nZ3VuYSI6InNhdHJpYXN5YW1tIiwiaWF0IjoxNjY3MTQ4OTcyLCJleHAiOjE2NjcxNDg5ODd9.fAVku-8KkiZFQc57qFze7J7D-mhz1CotkMNrV06Wa1E
 ###
 GET http://localhost:5000/user/2
 
@@ -66,10 +66,11 @@ POST http://localhost:5000/login
 Content-Type: application/json
 
 {
-    "namaPengguna" : "cahyahu",
-    "sandi" : "hadidsuka"
+    "user" : "satriasyamm",
+    "pwd" : "cobalogin"
 }
-####
+
+###
 GET http://localhost:5000/token
 
 ###

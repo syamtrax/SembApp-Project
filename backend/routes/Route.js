@@ -11,10 +11,12 @@ import {
 
 import {
   getUser,
-  getUserByID, Register, Login, Logout
+  Register,
+  Login,
+  Logout,
 } from "../controllers/userController.js";
 
-import {verifyToken} from "../middle/verifyToken.js";
+import { verifyToken } from "../middle/verifyToken.js";
 
 import { refreshToken } from "../controllers/refreshToken.js";
 
@@ -29,11 +31,10 @@ router.get("/total", totalTransaction);
 router.get("/totalprice", sumTransaction);
 
 router.get("/user", verifyToken, getUser);
-router.get("/user/:id", getUserByID);
 router.post("/user", Register);
 
 router.post("/login", Login);
 router.get("/token", refreshToken);
-router.delete("/logout", Logout)
+router.delete("/logout", Logout);
 
 export default router;

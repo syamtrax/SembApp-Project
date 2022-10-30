@@ -3,8 +3,19 @@ import pengaturan from "../assets/pengaturan.png";
 import help from "../assets/help.png";
 import notifikasi from "../assets/notifikasi.png";
 import avatar from "../assets/Avatar w. photo.png";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const Logout = async () => {
+    try {
+      await axios.delete("http://localhost:5000/logout");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="fixed top-0 right-0 left-0 z-50 w-full bg-white h-16 shadow-md">
       <div className="flex justify-between h-full mx-auto">
@@ -30,7 +41,7 @@ const Navbar = () => {
           <button className="px-2 py-7">
             <img src={pengaturan} />
           </button>
-          <button className="px-8 py-7">
+          <button className="px-8 py-7" onClick={Logout}>
             <img className="" src={avatar} />
           </button>
         </div>

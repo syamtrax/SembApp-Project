@@ -8,20 +8,7 @@ import jwt from "jsonwebtoken";
 export const getUser = async (req, res) => {
   try {
     const response = await User.findAll({
-      attributes: ['id', 'namaToko', 'namaPengguna']
-    });
-    res.status(200).json(response);
-  } catch (error) {
-    console.log(error.message);
-  }
-};
-/**Ambil data user berdasarkan ID */
-export const getUserByID = async (req, res) => {
-  try {
-    const response = await User.findOne({
-      where: {
-        id: req.params.id,
-      },
+      attributes: ["id", "namaToko", "namaPengguna"],
     });
     res.status(200).json(response);
   } catch (error) {
@@ -67,74 +54,91 @@ export const deleteUser = async (req, res) => {
   }
 };
 
-export const Register = async(req,res) => {
-  const {namaToko, alamatToko, namaPengguna, sandi, email, telp, img} = req.body;
+export const Register = async (req, res) => {
+  const { namaToko, alamatToko, namaPengguna, sandi, email, telp, img } =
+    req.body;
   const salt = await bcrypt.genSalt();
   const hashPassword = await bcrypt.hash(sandi, salt);
   try {
     await User.create({
-      namaToko : namaToko,
-      alamatToko : alamatToko,
-      namaPengguna : namaPengguna,
-      sandi : hashPassword,
-      email : email,
-      telp : telp,
-      img : img 
+      namaToko: namaToko,
+      alamatToko: alamatToko,
+      namaPengguna: namaPengguna,
+      sandi: hashPassword,
+      email: email,
+      telp: telp,
+      img: img,
     });
-    res.status(201).json({msg: "Register Berhasil"});
+    res.status(201).json({ msg: "Register Berhasil" });
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export const Login = async(req,res) => {
+export const Login = async (req, res) => {
   try {
     const user = await User.findAll({
-      where : {
-        namaPengguna : req.body.namaPengguna
-      }
+      where: {
+        namaPengguna: req.body.user,
+      },
     });
-    const match = await bcrypt.compare(req.body.sandi, user[0].sandi);
-    if(!match) return res.status(400).json({msg : "Kata sandi salah!"});
+    const match = await bcrypt.compare(req.body.pwd, user[0].sandi);
+    if (!match) return res.status(400).json({ msg: "Kata sandi salah!" });
     const userId = user[0].id;
     const namaPengguna = user[0].namaPengguna;
+    const namaToko = user[0].namaToko;
 
-    const accessToken = jwt.sign({userId, namaPengguna}, process.env.ACCESS_TOKEN_SECRET,{
-      expiresIn:'20s'
-    });
-    const refreshToken = jwt.sign({userId, namaPengguna}, process.env.REFRESH_TOKEN_SECRET,{
-      expiresIn:'1d'
-    });
-    await User.update({refresh_token : refreshToken},{
-      where:{
-        id:userId
+    const accessToken = jwt.sign(
+      { userId, namaPengguna, namaToko },
+      process.env.ACCESS_TOKEN_SECRET,
+      {
+        expiresIn: "20s",
       }
+    );
+    const refreshToken = jwt.sign(
+      { userId, namaPengguna, namaToko },
+      process.env.REFRESH_TOKEN_SECRET,
+      {
+        expiresIn: "1d",
+      }
+    );
+    await User.update(
+      { refresh_token: refreshToken },
+      {
+        where: {
+          id: userId,
+        },
+      }
+    );
+    res.cookie("refreshToken", refreshToken, {
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000,
+      secure: false,
     });
-    res.cookie('refreshToken', refreshToken,{
-      httpOnly : true,
-      maxAge : 24*60*60*1000
-    })
-    res.json({accessToken});
+    res.json({ accessToken });
   } catch (error) {
-    res.status(400).json({msg:"Pengguna tidak ditemukan"});
+    res.status(400).json({ msg: "Pengguna tidak ditemukan" });
   }
-}
+};
 
-export const Logout = async(req,res)=>{
+export const Logout = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
-        if(!refreshToken) return res.sendStatus(204);
-        const user = await User.findAll({
-            where : {
-                refresh_token : refreshToken
-            }
-        });
-        if(!user[0]) return res.sendStatus(204);
-        const userId = user[0].id;
-        await User.update({refresh_token: null},{
-          where: {
-            id : userId
-          }
-        });
-        res.clearCookie('refreshToken');
-        return res.sendStatus(200);
-}
+  if (!refreshToken) return res.sendStatus(401);
+  const user = await User.findAll({
+    where: {
+      refresh_token: refreshToken,
+    },
+  });
+  if (!user[0]) return res.sendStatus(204);
+  const userId = user[0].id;
+  await User.update(
+    { refresh_token: null },
+    {
+      where: {
+        id: userId,
+      },
+    }
+  );
+  res.clearCookie("refreshToken");
+  return res.sendStatus(200);
+};

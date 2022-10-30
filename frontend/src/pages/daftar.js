@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import backgroundDaftar from "../assets/Background Halaman Daftar.png";
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
@@ -12,6 +12,7 @@ function Daftar() {
   const [namaToko, setNamatoko] = useState("");
   const [alamatToko, setAlamat] = useState("");
   const navigate = useNavigate();
+  const [msg, setMsg] = useState("");
 
   const saveUser = async (e) => {
     e.preventDefault();
@@ -25,7 +26,9 @@ function Daftar() {
       });
       navigate("/");
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        setMsg(error.response.data.msg);
+      }
     }
   };
   return (
@@ -72,13 +75,14 @@ function Daftar() {
                   <label className="text-base" htmlFor="Kata Sandi">
                     Kata Sandi
                   </label>
+                  <p className="text-center">{msg}</p>
                   <div className="flex items-center justify-evenly">
                     <input
                       className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                       id="password"
                       value={sandi}
                       onChange={(e) => setPassword(e.target.value)}
-                      type="text"
+                      type="password"
                       name="password"
                       placeholder="Masukkan Kata Sandi"
                     />

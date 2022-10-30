@@ -4,10 +4,65 @@ import contohGambar from "../assets/Background Halaman Dashboard.png";
 import fotoprofil from "../assets/Ellipse 12.png";
 import kasir from "../assets/Group.png";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [transaction, setTransaction] = useState([]);
   const [earning, setEarning] = useState("");
+  const [nama, setNama] = useState("");
+  const [namaToko, setNamaToko] = useState("");
+  const [token, setToken] = useState("");
+  const [expire, setExpire] = useState("");
+  //const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    refreshToken();
+  }, []);
+
+  const refreshToken = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/token");
+      setToken(response.data.accessToken);
+      const decoded = jwt_decode(response.data.accessToken);
+      console.log(decoded);
+      setNama(decoded.namaPengguna);
+      setNamaToko(decoded.namaToko);
+      setExpire(decoded.exp);
+    } catch (error) {
+      if (error.response) {
+        navigate("/");
+      }
+    }
+  };
+  const axiosJWT = axios.create();
+
+  axiosJWT.interceptors.request.use(
+    async (config) => {
+      const currentDate = new Date();
+      if (expire * 1000 < currentDate.getTime()) {
+        const response = await axios.get("http://localhost:5000/token");
+        config.headers.Authorization = `Bearer ${response.data.accessToken}`;
+        setToken(response.data.accessToken);
+        const decoded = jwt_decode(response.data.accessToken);
+        setNama(decoded.namaPengguna);
+        setExpire(decoded.exp);
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
+  const getUsers = async () => {
+    const response = await axiosJWT.get("http://localhost:5000/user", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    console.log(response.data);
+  };
 
   useEffect(() => {
     getTransaction();
@@ -36,11 +91,6 @@ const Dashboard = () => {
 
   return (
     <>
-      <link rel="preconnect" href="https://fonts.gstatic.com" />
-      <link
-        href="https://fonts.googleapis.com/css2family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet"
-      />
       <div className="bg-abumuda w-full flex justify-center max-h-screen font-inter">
         <div className="absolute">
           <Navbar />
@@ -59,8 +109,9 @@ const Dashboard = () => {
                   src={fotoprofil}
                   className="object-cover rounded-full h-12 w-12 mx-auto content-center"
                 ></img>
-                <div class="text-2xl text-white w-full text-center">
-                  Selamat Datang Cahya di Toko Cahya Abadi
+                <div className="text-2xl text-white w-full text-center">
+                  Selamat Datang <span className="font-bold">{nama}</span> di{" "}
+                  <span className="font-bold">{namaToko}</span>
                 </div>
               </div>
             </div>
@@ -150,7 +201,9 @@ const Dashboard = () => {
                             <div>{trans.createdAt}</div>
                           </td>
                           <td className="w-32">{trans.member}</td>
-                          <td className="w-32">Button</td>
+                          <td className="w-32">
+                            <button onClick={getUsers}>GET USER</button>
+                          </td>
                         </tr>
                       ))}
                     </tbody>
