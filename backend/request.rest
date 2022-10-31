@@ -8,11 +8,12 @@ Content-Type: application/json
 
 {
     "label" : "Berhasil",
-    "idtrans" : "IDTrans02_24102022",
+    "idtrans" : "IDTrans04_24102022",
     "paymenttype" : "QRIS",
-    "price" : 300000,
+    "price" : 1000,
     "date" : "2022-10-24",
-    "member" : "Member"
+    "member" : "Member",
+    "namaPengguna" : "satriasyamm"
 
 }
 

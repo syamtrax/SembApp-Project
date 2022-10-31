@@ -12,6 +12,7 @@ const Transaction = db.define(
     price: DataTypes.INTEGER,
     date: DataTypes.DATE,
     member: DataTypes.STRING,
+    namaPengguna : DataTypes.STRING
   },
   {
     freezeTableName: true,

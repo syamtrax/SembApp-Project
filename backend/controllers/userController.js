@@ -58,18 +58,28 @@ export const Register = async (req, res) => {
   const { namaToko, alamatToko, namaPengguna, sandi, email, telp, img } =
     req.body;
   const salt = await bcrypt.genSalt();
+  const available = await User.findAll({
+    where: {
+      namaPengguna: namaPengguna,
+    },
+  });
+
   const hashPassword = await bcrypt.hash(sandi, salt);
   try {
-    await User.create({
-      namaToko: namaToko,
-      alamatToko: alamatToko,
-      namaPengguna: namaPengguna,
-      sandi: hashPassword,
-      email: email,
-      telp: telp,
-      img: img,
-    });
-    res.status(201).json({ msg: "Register Berhasil" });
+    if (available == "") {
+      await User.create({
+        namaToko: namaToko,
+        alamatToko: alamatToko,
+        namaPengguna: namaPengguna,
+        sandi: hashPassword,
+        email: email,
+        telp: telp,
+        img: img,
+      });
+      res.status(201).json({ msg: "Register Berhasil" });
+    } else {
+      return res.status(400).json({ msg: "Nama pengguna telah digunakan!" });
+    }
   } catch (error) {
     console.log(error);
   }

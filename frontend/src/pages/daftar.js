@@ -52,12 +52,15 @@ function Daftar() {
             <form onSubmit={saveUser}>
               <div className="flex flex-col">
                 <div className="flex flex-col">
-                  <label
-                    className="text-base text-gray-800"
-                    htmlFor="Nama Pengguna"
-                  >
-                    Nama Pengguna
-                  </label>
+                  <div className="flex justify-between">
+                    <label
+                      className="text-base text-gray-800"
+                      htmlFor="Nama Pengguna"
+                    >
+                      Nama Pengguna
+                    </label>
+                    <p className="text-base text-red-500">{msg}</p>
+                  </div>
                   <input
                     className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"
                     id="username"
@@ -75,7 +78,7 @@ function Daftar() {
                   <label className="text-base" htmlFor="Kata Sandi">
                     Kata Sandi
                   </label>
-                  <p className="text-center">{msg}</p>
+
                   <div className="flex items-center justify-evenly">
                     <input
                       className="border rounded-lg w-full p-3 mb-1 text-gray-900 bg-white focus:border-black"

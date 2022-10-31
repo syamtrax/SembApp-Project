@@ -9,17 +9,12 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const [transaction, setTransaction] = useState([]);
-  const [earning, setEarning] = useState("");
   const [nama, setNama] = useState("");
   const [namaToko, setNamaToko] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
   //const [users, setUsers] = useState([]);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    refreshToken();
-  }, []);
 
   const refreshToken = async () => {
     try {
@@ -36,6 +31,24 @@ const Dashboard = () => {
       }
     }
   };
+
+  const penjualan = transaction.reduce((total, transaction) => {
+    if(transaction.namaPengguna  === nama){
+      total += transaction.price
+    }
+    return total
+  },0).toString()
+  .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+  const transaksi = transaction.reduce((count, transaction) => {
+    if(transaction.namaPengguna  === nama){
+      count += 1
+    }
+    return count
+  },0)
+
+
+
   const axiosJWT = axios.create();
 
   axiosJWT.interceptors.request.use(
@@ -55,6 +68,7 @@ const Dashboard = () => {
       return Promise.reject(error);
     }
   );
+
   const getUsers = async () => {
     const response = await axiosJWT.get("http://localhost:5000/user", {
       headers: {
@@ -66,27 +80,12 @@ const Dashboard = () => {
 
   useEffect(() => {
     getTransaction();
-    getTotalTransaction();
-    getSumTransaction();
+    refreshToken();
   }, []);
 
-  const [totaltrans, setTotalTrans] = useState(0);
   const getTransaction = async () => {
     const response = await axios.get("http://localhost:5000/transaction");
     setTransaction(response.data);
-  };
-
-  const getTotalTransaction = async () => {
-    const response = await axios.get("http://localhost:5000/total");
-    setTotalTrans(response.data);
-  };
-  const getSumTransaction = async () => {
-    const response = await axios.get("http://localhost:5000/totalprice");
-    const value = response.data
-      .toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-    setEarning(value);
   };
 
   return (
@@ -145,7 +144,7 @@ const Dashboard = () => {
                   <div className="">Total Penjualan</div>
                   <div className="flex justify-between">
                     <div className="flex-col font-bold text-2xl content-center items-center">
-                      Rp {earning}
+                      Rp {penjualan}
                     </div>
                     <div className="">
                       <div className="text-sm text-hijau">+36%</div>
@@ -157,7 +156,7 @@ const Dashboard = () => {
                   <div className="">Total Transaksi</div>
                   <div className="flex justify-between">
                     <div className="flex-col font-bold text-2xl content-center items-center">
-                      {totaltrans} kali
+                      {transaksi} kali
                     </div>
                     <div className="">
                       <div className="text-sm text-hijau">+36%</div>
@@ -184,28 +183,34 @@ const Dashboard = () => {
                 <div className="">
                   <table className="flex table-fixed justify-center py-2 overflow-y-auto h-80">
                     <tbody>
-                      {transaction.map((trans) => (
-                        <tr key={trans.id} className="border-b-2 h-16">
-                          <td className="w-40 text-center">{trans.label}</td>
-                          <td className="w-56">
-                            <div className="font-bold">{trans.idtrans}</div>
-                            <div>{trans.paymenttype}</div>
-                          </td>
-                          <td className="w-48">
-                            <div className="text-lg font-bold">
-                              Rp{" "}
-                              {trans.price
-                                .toString()
-                                .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
-                            </div>
-                            <div>{trans.createdAt}</div>
-                          </td>
-                          <td className="w-32">{trans.member}</td>
-                          <td className="w-32">
-                            <button onClick={getUsers}>Button</button>
-                          </td>
-                        </tr>
-                      ))}
+                      {transaction.map((trans) => {
+                        if (trans.namaPengguna === nama) {
+                          return (
+                            <tr key={trans.id} className="border-b-2 h-16">
+                              <td className="w-40 text-center">
+                                {trans.label}
+                              </td>
+                              <td className="w-56">
+                                <div className="font-bold">{trans.idtrans}</div>
+                                <div>{trans.paymenttype}</div>
+                              </td>
+                              <td className="w-48">
+                                <div className="text-lg font-bold">
+                                  Rp{" "}
+                                  {trans.price
+                                    .toString()
+                                    .replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
+                                </div>
+                                <div>{trans.createdAt}</div>
+                              </td>
+                              <td className="w-32">{trans.member}</td>
+                              <td className="w-32">
+                                <button onClick={getUsers}>Button</button>
+                              </td>
+                            </tr>
+                          );
+                        }
+                      })}
                     </tbody>
                   </table>
                 </div>
