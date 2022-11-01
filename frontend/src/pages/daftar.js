@@ -7,6 +7,7 @@ import axios from "axios";
 function Daftar() {
   const [namaPengguna, setnamaPengguna] = useState("");
   const [sandi, setsandi] = useState("");
+  const [konfsandi, setKonfsandi] = useState("");
   const [telp, settelp] = useState("");
   const [namaToko, setnamaToko] = useState("");
   const [alamatToko, setalamatToko] = useState("");
@@ -108,22 +109,43 @@ function Daftar() {
                   />
                   <div className="text-red-500 text-sm">{userError}</div>
                 </div>
-                <div className="flex flex-col">
-                  <label className="text-base" htmlFor="Kata Sandi">
-                    Kata Sandi
-                  </label>
-                  <div className=" flex flex-col">
-                    <input
-                      className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
-                      id="sandi"
-                      value={sandi}
-                      onChange={(e) => setsandi(e.target.value)}
-                      type="sandi"
-                      name="sandi"
-                      placeholder="Masukkan Kata Sandi"
-                    />
-                    <div className="text-red-500 text-sm text-start">
-                      {passError}
+                <div>
+                  <div className="flex flex-col">
+                    <label className="text-base" htmlFor="Kata Sandi">
+                      Kata Sandi
+                    </label>
+                    <div className=" flex flex-col">
+                      <input
+                        className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
+                        id="sandi"
+                        value={sandi}
+                        onChange={(e) => setsandi(e.target.value)}
+                        type="sandi"
+                        name="sandi"
+                        placeholder="Masukkan Kata Sandi"
+                      />
+                      <div className="text-red-500 text-sm text-start">
+                        {passError}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex flex-col">
+                    <label className="text-base" htmlFor="Kata Sandi">
+                      Konfirmasi Kata Sandi
+                    </label>
+                    <div className=" flex flex-col">
+                      <input
+                        className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
+                        id="sandi"
+                        value={konfsandi}
+                        onChange={(e) => setKonfsandi(e.target.value)}
+                        type="sandi"
+                        name="sandi"
+                        placeholder="Masukkan Kata Sandi"
+                      />
+                      <div className="text-red-500 text-sm text-start">
+                        {passError}
+                      </div>
                     </div>
                   </div>
                   <div className="flex flex-col">
