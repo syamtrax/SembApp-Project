@@ -13,6 +13,7 @@ function Daftar() {
   const [alamatToko, setalamatToko] = useState("");
   const [userError, setuserError] = useState("");
   const [passError, setpassError] = useState("");
+  const [konfpassError, setkonfpassError] = useState("");
   const [numError, setnumError] = useState("");
   const [namaTokorror, setnamaTokorror] = useState("");
   const [addError, setaddError] = useState("");
@@ -27,6 +28,8 @@ function Daftar() {
     if (telp === "") errors.telp = "No.telepon diperlukan";
     if (namaToko === "") errors.namaToko = "Nama toko diperlukan";
     if (alamatToko === "") errors.alamatToko = "Alamat diperlukan";
+    if (konfsandi === "" && konfsandi !== sandi)
+      errors.konfsandi = "Kata sandi diperlukan atau kata sandi tidak sama";
 
     return Object.keys(errors).length === 0 ? null : errors;
   };
@@ -52,12 +55,14 @@ function Daftar() {
     if (errors) {
       setuserError(errors.namaPengguna);
       setpassError(errors.sandi);
+      setkonfpassError(errors.konfsandi);
       setnumError(errors.telp);
       setnamaTokorror(errors.namaToko);
       setaddError(errors.alamatToko);
     } else {
       setuserError("");
       setpassError("");
+      setkonfpassError("")
       setnumError("");
       setnamaTokorror("");
       setaddError("");
@@ -70,7 +75,7 @@ function Daftar() {
         <img src={backgroundDaftar} className="h-screen w-screen"></img>
       </div>
       <div className="bg-abumuda h-screen">
-        <div className="relative bg-white w-2/3 p-6 m-auto my-20 rounded-2xl drop-shadow-2xl">
+        <div className="relative bg-white w-2/3 p-6 m-auto my-10 rounded-2xl drop-shadow-2xl">
           <div className="flex flex-col">
             <Link to="/">
               <button className="flex mt-1 mb-2 font-medium items-center text-birumuda hover:underline">
@@ -120,7 +125,7 @@ function Daftar() {
                         id="sandi"
                         value={sandi}
                         onChange={(e) => setsandi(e.target.value)}
-                        type="sandi"
+                        type="password"
                         name="sandi"
                         placeholder="Masukkan Kata Sandi"
                       />
@@ -139,12 +144,12 @@ function Daftar() {
                         id="sandi"
                         value={konfsandi}
                         onChange={(e) => setKonfsandi(e.target.value)}
-                        type="sandi"
+                        type="password"
                         name="sandi"
-                        placeholder="Masukkan Kata Sandi"
+                        placeholder="Masukkan Ulang Kata Sandi"
                       />
                       <div className="text-red-500 text-sm text-start">
-                        {passError}
+                        {konfpassError}
                       </div>
                     </div>
                   </div>
