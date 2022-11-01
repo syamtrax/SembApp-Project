@@ -5,15 +5,15 @@ import { HiArrowLeft } from "react-icons/hi";
 import axios from "axios";
 
 function Daftar() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [number, setNumber] = useState("");
-  const [store, setStore] = useState("");
-  const [address, setAddress] = useState("");
+  const [namaPengguna, setnamaPengguna] = useState("");
+  const [sandi, setsandi] = useState("");
+  const [telp, settelp] = useState("");
+  const [namaToko, setnamaToko] = useState("");
+  const [alamatToko, setalamatToko] = useState("");
   const [userError, setuserError] = useState("");
   const [passError, setpassError] = useState("");
   const [numError, setnumError] = useState("");
-  const [storError, setstorError] = useState("");
+  const [namaTokorror, setnamaTokorror] = useState("");
   const [addError, setaddError] = useState("");
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
@@ -21,11 +21,11 @@ function Daftar() {
   const validate = () => {
     const errors = {};
 
-    if (username === "") errors.username = "Nama pengguna diperlukan";
-    if (password === "") errors.password = "Kata sandi diperlukan";
-    if (number === "") errors.number = "No.telepon diperlukan";
-    if (store === "") errors.store = "Nama toko diperlukan";
-    if (address === "") errors.address = "Alamat diperlukan";
+    if (namaPengguna === "") errors.namaPengguna = "Nama pengguna diperlukan";
+    if (sandi === "") errors.sandi = "Kata sandi diperlukan";
+    if (telp === "") errors.telp = "No.telepon diperlukan";
+    if (namaToko === "") errors.namaToko = "Nama toko diperlukan";
+    if (alamatToko === "") errors.alamatToko = "Alamat diperlukan";
 
     return Object.keys(errors).length === 0 ? null : errors;
   };
@@ -34,11 +34,11 @@ function Daftar() {
     e.preventDefault();
     try {
       await axios.post("http://localhost:5000/user", {
-        username,
-        password,
-        number,
-        store,
-        address,
+        namaPengguna,
+        sandi,
+        telp,
+        namaToko,
+        alamatToko,
       });
       navigate("/");
     } catch (error) {
@@ -49,16 +49,16 @@ function Daftar() {
 
     const errors = validate();
     if (errors) {
-      setuserError(errors.username);
-      setpassError(errors.password);
-      setnumError(errors.number);
-      setstorError(errors.store);
-      setaddError(errors.address);
+      setuserError(errors.namaPengguna);
+      setpassError(errors.sandi);
+      setnumError(errors.telp);
+      setnamaTokorror(errors.namaToko);
+      setaddError(errors.alamatToko);
     } else {
       setuserError("");
       setpassError("");
       setnumError("");
-      setstorError("");
+      setnamaTokorror("");
       setaddError("");
     }
   };
@@ -99,11 +99,11 @@ function Daftar() {
                   </div>
                   <input
                     className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
-                    id="username"
+                    id="namaPengguna"
                     type="text"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    name="username"
+                    value={namaPengguna}
+                    onChange={(e) => setnamaPengguna(e.target.value)}
+                    name="namaPengguna"
                     placeholder="Masukkan Nama Pengguna"
                   />
                   <div className="text-red-500 text-sm">{userError}</div>
@@ -115,11 +115,11 @@ function Daftar() {
                   <div className=" flex flex-col">
                     <input
                       className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
-                      id="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      type="password"
-                      name="password"
+                      id="sandi"
+                      value={sandi}
+                      onChange={(e) => setsandi(e.target.value)}
+                      type="sandi"
+                      name="sandi"
                       placeholder="Masukkan Kata Sandi"
                     />
                     <div className="text-red-500 text-sm text-start">
@@ -134,12 +134,12 @@ function Daftar() {
                       className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
                       id="toko"
                       type="text"
-                      value={store}
-                      onChange={(e) => setStore(e.target.value)}
+                      value={namaToko}
+                      onChange={(e) => setnamaToko(e.target.value)}
                       name="toko"
                       placeholder="Masukkan Nama Toko"
                     />
-                    <div className="text-red-500 text-sm">{storError}</div>
+                    <div className="text-red-500 text-sm">{namaTokorror}</div>
                   </div>
                   <div className="flex flex-col">
                     <label className="text-base" htmlFor="Alamat Toko">
@@ -149,8 +149,8 @@ function Daftar() {
                       className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
                       id="alamat"
                       type="text"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
+                      value={alamatToko}
+                      onChange={(e) => setalamatToko(e.target.value)}
                       name="alamat"
                       placeholder="Masukkan Alamat Toko"
                     />
@@ -163,9 +163,9 @@ function Daftar() {
                     <input
                       className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
                       id="nomor"
-                      type="number"
-                      value={number}
-                      onChange={(e) => setNumber(e.target.value)}
+                      type="telp"
+                      value={telp}
+                      onChange={(e) => settelp(e.target.value)}
                       name="nomor"
                       placeholder="Masukkan No.Telepon"
                     />
