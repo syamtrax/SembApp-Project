@@ -69,22 +69,22 @@ function Daftar() {
         <img src={backgroundDaftar} className="h-screen w-screen"></img>
       </div>
       <div className="bg-abumuda h-screen">
-        <div className="relative bg-white w-2/3 p-6 m-auto my-20 rounded-2xl drop-shadow-2xl">
-          <div className="flex flex-col">
+        <div className="bg-white mx-36 my-24 rounded-3xl p-6">
+          <div>
             <Link to="/">
-              <button className="flex mt-1 mb-2 font-medium items-center text-birumuda hover:underline">
-                <HiArrowLeft />
-                Kembali
-              </button>
+            <button className="font-medium flex items-center text-birumuda mt-4">
+              
+                <HiArrowLeft
+                  // onClick={() => toggleOtp(false)}
+                  className=""
+                />
+              
+              Kembali
+            </button>
             </Link>
-            <h1 className="font-bold text-2xl mt-1 text-center">Daftar Toko</h1>
-            <p className="text-sm text-center text-gray-800 mb-6">
-              {" "}
-              Sudah memiliki Akun?{" "}
-              <a className="font-semibold text-birumuda hover:underline">
-                <Link to="/">Masuk</Link>
-              </a>
-            </p>
+            <h1 className="font-bold flex flex-col items-center text-5xl mt-1 mb-6">
+              Daftar Toko
+            </h1>
             <form onSubmit={saveUser}>
               <div className="flex flex-col">
                 <div className="flex flex-col">
@@ -172,7 +172,8 @@ function Daftar() {
                   <div className="flex items-center text-sm mt-1 mb-6">
                     <input
                       type="checkbox"
-                      className="w-4 h-4 border rounded focus:accent-birumuda"
+                      className="w-4 h-4 border rounded text-black focus:border-black"
+                      required
                     />
                     <span className="ml-1">
                       Saya setuju dengan{" "}

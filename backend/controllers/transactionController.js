@@ -29,7 +29,7 @@ export const getTransactionByID = async (req, res) => {
 export const createTransaction = async (req, res) => {
   try {
     await Transaction.create(req.body);
-    res.status(201).json({ msg: "User Created" });
+    res.status(201).json({ msg: "Transaction Data Created" });
   } catch (error) {
     console.log(error.message);
   }

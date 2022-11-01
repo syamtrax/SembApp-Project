@@ -2,9 +2,9 @@ import React from "react";
 import pengaturan from "../assets/pengaturan.png";
 import help from "../assets/help.png";
 import notifikasi from "../assets/notifikasi.png";
-import avatar from "../assets/Avatar w. photo.png";
+import avatar from "../assets/avatardefault_92824.png";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,7 +21,9 @@ const Navbar = () => {
       <div className="flex justify-between h-full mx-auto">
         <div className="flex">
           <div className="flex items-center text-2xl font-black w-40 text-center px-5 bg-birumuda text-white">
-            SembApp
+            <Link to="/dashboard">
+              <button>SembApp</button>
+            </Link>
           </div>
           <div className="flex text-base justify-start text-center items-center">
             <div className="px-5 bg-white hover:font-bold">Beranda</div>
@@ -31,18 +33,29 @@ const Navbar = () => {
             <div className="px-5 bg-white hover:font-bold">Dokumen</div>
           </div>
         </div>
-        <div className="flex text-base text-center items-center">
-          <button className="px-2 py-7">
+        <div className="flex text-base text-center items-center gap-4">
+          <button className="py-7">
             <img src={notifikasi} />
           </button>
-          <button className="px-2 py-7">
+          <button className="py-7">
             <img src={help} />
           </button>
-          <button className="px-2 py-7">
+          <button className="py-7">
             <img src={pengaturan} />
           </button>
-          <button className="px-8 py-7" onClick={Logout}>
-            <img className="" src={avatar} />
+          <button>
+            <div className="">
+              <button className="mx-8 h-16 w-full justify-center content-center items-center peer bg-white text-black">
+                <img className="h-10" src={avatar} />
+              </button>
+              <div className="hidden w-32 peer-hover:flex hover:flex flex-col bg-white drop-shadow-lg absolute justify-start">
+                <button className="" onClick={Logout}>
+                  <div className="hover:bg-gray-200 p-10 w-full text-center">
+                    Logout
+                  </div>
+                </button>
+              </div>
+            </div>
           </button>
         </div>
       </div>

@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar.js";
 import contohGambar from "../assets/Background Halaman Dashboard.png";
-import fotoprofil from "../assets/Ellipse 12.png";
+import fotoprofil from "../assets/avatardefault_92824.png";
 import kasir from "../assets/Group.png";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
+import  { Redirect } from 'react-router-dom'
 
 const Dashboard = () => {
+
   const [transaction, setTransaction] = useState([]);
   const [nama, setNama] = useState("");
   const [namaToko, setNamaToko] = useState("");
@@ -21,7 +23,6 @@ const Dashboard = () => {
       const response = await axios.get("http://localhost:5000/token");
       setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
-      console.log(decoded);
       setNama(decoded.namaPengguna);
       setNamaToko(decoded.namaToko);
       setExpire(decoded.exp);
@@ -32,22 +33,28 @@ const Dashboard = () => {
     }
   };
 
-  const penjualan = transaction.reduce((total, transaction) => {
-    if(transaction.namaPengguna  === nama){
-      total += transaction.price
-    }
-    return total
-  },0).toString()
-  .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
+  transaction.map((trans) => {
+    const date = new Date(trans.createdAt);
+    transaction.createdAt = date.toISOString().substring(0, 10);
+  });
+
+  const penjualan = transaction
+    .reduce((total, transaction) => {
+      if (transaction.namaPengguna === nama) {
+        total += transaction.price;
+      }
+      return total;
+    }, 0)
+    .toString()
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
   const transaksi = transaction.reduce((count, transaction) => {
-    if(transaction.namaPengguna  === nama){
-      count += 1
+    if (transaction.namaPengguna === nama) {
+      count += 1;
     }
-    return count
-  },0)
-
-
+    return count;
+  }, 0);
 
   const axiosJWT = axios.create();
 
@@ -85,6 +92,8 @@ const Dashboard = () => {
 
   const getTransaction = async () => {
     const response = await axios.get("http://localhost:5000/transaction");
+    //const date = new Date(response.data.createdAt);
+    //response.data.createdAt = date.toISOString().substring(0, 10);
     setTransaction(response.data);
   };
 
@@ -101,16 +110,17 @@ const Dashboard = () => {
             <div className="relative">
               <img
                 src={contohGambar}
-                className="object-cover h-40 w-full rounded-md"
+                className="object-cover h-40 w-full rounded-md brightness-100"
               ></img>
               <div className="absolute top-1/3 w-full">
                 <img
                   src={fotoprofil}
-                  className="object-cover rounded-full h-12 w-12 mx-auto content-center"
+                  className="object-cover rounded-full h-15 w-12 mx-auto content-center"
                 ></img>
-                <div className="text-2xl text-white w-full text-center">
-                  Selamat Datang <span className="font-bold">{nama}</span> di{" "}
-                  <span className="font-bold">{namaToko}</span>
+                <div className="text-2xl text-white w-full text-center text-shadow-lg">
+                  Selamat Datang{" "}
+                  <span className="font-bold text-shadow-xl">{nama}</span> di{" "}
+                  <span className="font-bold text-shadow-2xl">{namaToko}</span>
                 </div>
               </div>
             </div>
@@ -216,7 +226,7 @@ const Dashboard = () => {
                 </div>
               </div>
               <div className="w-1/4 gap-4">
-                <div className="bg-white h-2/3 shadow-md rounded-md">
+                <div className="bg-white h-[248px] shadow-md rounded-md mb-4">
                   <div className="h-1/4 bg-birumuda text-white text-center justify-center items-center flex rounded-t-md font-bold">
                     Notifikasi Produk
                   </div>

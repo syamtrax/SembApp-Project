@@ -12,16 +12,14 @@ module.exports = {
       xl: "1280px",
       "2xl": "1536px",
     },
-    swiper : {
-
-    },
+    swiper: {},
     colors: {
       transparent: "transparent",
       current: "currentColor",
-      birumuda : "#2D9CDB",
-      hijau : "#27AE60",
-      abu : "#828282",
-      abumuda : "#F2F2F2",
+      birumuda: "#2D9CDB",
+      hijau: "#27AE60",
+      abu: "#828282",
+      abumuda: "#F2F2F2",
       black: colors.black,
       white: colors.white,
       gray: colors.coolGray,
@@ -289,7 +287,7 @@ module.exports = {
         "monospace",
       ],
       nunito: ["nunito", "sans-serif"],
-      inter : ["inter", "sans-serif"]
+      inter: ["inter", "sans-serif"],
     },
     fontSize: {
       xs: ["0.75rem", { lineHeight: "1rem" }],
@@ -1042,5 +1040,5 @@ module.exports = {
     wordBreak: ["responsive"],
     zIndex: ["responsive", "focus-within", "focus"],
   },
-  plugins: [],
+  plugins: [require("tailwindcss-textshadow")],
 };
