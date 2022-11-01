@@ -18,7 +18,6 @@ function Daftar() {
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
 
-
   const validate = () => {
     const errors = {};
 
@@ -51,7 +50,7 @@ function Daftar() {
     const errors = validate();
     if (errors) {
       setuserError(errors.username);
-      setPassword(errors.password);
+      setpassError(errors.password);
       setnumError(errors.number);
       setstorError(errors.store);
       setaddError(errors.address);
@@ -113,7 +112,7 @@ function Daftar() {
                   <label className="text-base" htmlFor="Kata Sandi">
                     Kata Sandi
                   </label>
-                  <div className="flex items-center justify-evenly">
+                  <div className=" flex flex-col">
                     <input
                       className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
                       id="password"
@@ -123,7 +122,9 @@ function Daftar() {
                       name="password"
                       placeholder="Masukkan Kata Sandi"
                     />
-                    <div className="text-red-500 text-sm">{password}</div>
+                    <div className="text-red-500 text-sm text-start">
+                      {passError}
+                    </div>
                   </div>
                   <div className="flex flex-col">
                     <label className="text-base" htmlFor="Nama Toko">
