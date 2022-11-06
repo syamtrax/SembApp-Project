@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar.js";
 import {BiChevronRight} from "react-icons/bi";
+import {AiOutlineSearch} from "react-icons/ai";
+import {HiFilter} from "react-icons/hi";
 import fotoprofil from "../assets/avatardefault_92824.png";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -41,10 +43,27 @@ const Document = () => {
            
             <div className="flex mt-4 justify-between gap-4">
               <div className="bg-white w-full h-full rounded-md shadow-md">
-                <div className="flex justify-between p-3">
-                  <div>
-                    <div className="text-lg font-bold">Data Dokumen</div>
-                  </div>
+              <div className="flex justify-between">
+                <div className="text-lg font-semibold flex items-center px-4">
+                Data Dokumen
+                </div>
+                <div className="flex px-4">
+                    <div className="flex items-center">
+                        <form action="">
+                        <div className="relative flex items-center">
+                        <AiOutlineSearch className="absolute text-gray-400 ml-5"/>
+                          <input 
+                            type="text" 
+                            placeholder="Cari Produk" 
+                            className=" text-sm font-normal rounded-md border-2 border-gray-300 pr-3 pl-6 py-1 m-4" />
+                        </div>
+                        </form>
+                        <button className="text-sm font-medium rounded-md border-2 border-gray-300 flex items-center px-2 py-1">
+                          <span className="p-1"><HiFilter/></span>
+                          Filter
+                        </button>
+                      </div>
+                </div>
                 </div>
                 <div className="">
                   <table className="flex table-fixed justify-center py-2 overflow-y-auto h-full">
