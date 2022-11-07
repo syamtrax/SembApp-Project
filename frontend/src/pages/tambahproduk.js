@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../components/navbar";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { BiChevronRight } from "react-icons/bi";
 import { HiArrowLeft } from "react-icons/hi";
 import axios from "axios";
@@ -53,11 +53,11 @@ function TambahProduk() {
             <span className="text-gray-500 self-center">
               <BiChevronRight />
             </span>
-            <span>TambahProduk</span>
+            <span>Tambah Produk</span>
           </div>
           <h1 className="text-2xl font-bold pb-4">Halaman Tambah Produk</h1>
           <div className="flex flex-col w-full h-full rounded-md shadow-md bg-white p-6">
-            <div className="flex justify-between">
+            <div className="flex justify-between mb-3">
               <h2 className="text-lg font-semibold">Tambah Produk</h2>
               <Link to="/produk">
                 <button className="flex font-medium items-center text-birumuda hover:underline">
@@ -68,53 +68,38 @@ function TambahProduk() {
             </div>
             <form className="flex flex-col gap-3">
               <div className="flex flex-col">
-                <label
-                  className="text-base font-medium text-birumuda"
-                  htmlFor="Kode Produk"
-                >
+                <label className="text-base font-medium text-birumuda">
                   Kode Produk
                 </label>
                 <input
                   className="border-b-2 w-1/2 p-1 text-gray-500 bg-white"
-                  id="kodeProduk"
                   type="number"
                   value={kodeProduk}
                   onChange={(e) => setkodeProduk(e.target.value)}
-                  name="kodeProduk"
                   placeholder="12345"
                 />
               </div>
               <div className="flex flex-col">
-                <label
-                  className="text-base font-medium text-birumuda"
-                  htmlFor="Nama Produk"
-                >
+                <label className="text-base font-medium text-birumuda">
                   Nama Produk
                 </label>
                 <input
                   className="border-b-2 w-1/2 p-1 text-gray-500 bg-white"
-                  id="Nama Produk"
                   type="text"
                   value={namaProduk}
                   onChange={(e) => setnamaProduk(e.target.value)}
-                  name="Nama Produk"
                   placeholder="Masukkan Nama Produk"
                 />
               </div>
               <div className="flex flex-col">
-                <label
-                  className="text-base font-medium text-birumuda"
-                  htmlFor="kategori Produk"
-                >
+                <label className="text-base font-medium text-birumuda">
                   Kategori Produk
                 </label>
                 <select
                   className="border-b-2 w-1/2 p-1 text-gray-500 bg-white"
-                  id="kategori Produk"
                   type="text"
                   value={kategoriProduk}
                   onChange={(e) => setkategoriProduk(e.target.value)}
-                  name="Kategori Produk"
                 >
                   <option value="none">Pilih Kategori Produk</option>
                   <option value="Beras">Beras</option>
@@ -124,72 +109,52 @@ function TambahProduk() {
               </div>
               <div className="flex justify-between gap-3">
                 <div className="flex flex-col w-1/2">
-                  <label
-                    className="text-base font-medium text-birumuda"
-                    htmlFor="Harga Beli"
-                  >
+                  <label className="text-base font-medium text-birumuda">
                     Harga Beli Produk
                   </label>
                   <input
                     className="border-b-2 w-full p-1 text-gray-500 bg-white"
-                    id="Harga Beli"
                     type="number"
                     value={hargaBeli}
                     onChange={(e) => sethargaBeli(e.target.value)}
-                    name="Harga Beli"
                     placeholder="Masukkan Harga Beli"
                   />
                 </div>
                 <div className="flex flex-col w-1/2">
-                  <label
-                    className="text-base font-medium text-birumuda"
-                    htmlFor="Harga Jual"
-                  >
+                  <label className="text-base font-medium text-birumuda">
                     Harga Jual Produk
                   </label>
                   <input
                     className="border-b-2 w-full p-1 text-gray-500 bg-white"
-                    id="Harga Jual"
                     type="number"
                     value={hargaJual}
                     onChange={(e) => sethargaJual(e.target.value)}
-                    name="Harga Jual"
                     placeholder="Masukkan Harga Jual"
                   />
                 </div>
               </div>
               <div className="flex justify-between gap-3">
                 <div className="flex flex-col w-1/2">
-                  <label
-                    className="text-base font-medium text-birumuda"
-                    htmlFor="Stok Produk"
-                  >
+                  <label className="text-base font-medium text-birumuda">
                     Stok Produk
                   </label>
                   <input
                     className="border-b-2 w-full p-1 text-gray-500 bg-white"
-                    id="Stok Produk"
                     type="number"
                     value={stokProduk}
                     onChange={(e) => setstokProduk(e.target.value)}
-                    name="Stok Produk"
                     placeholder="Masukkan Stok Produk"
                   />
                 </div>
                 <div className="flex flex-col w-1/2">
-                  <label
-                    className="text-base font-medium text-birumuda"
-                    htmlFor="Satuan Produk"
-                  >
+                  <label className="text-base font-medium text-birumuda">
                     Satuan Produk
                   </label>
                   <select
                     className="border-b-2 w-full p-1 text-gray-500 bg-white"
-                    id="Satuan Produk"
                     type="text"
                     value={satuanProduk}
                     onChange={(e) => setsatuanProduk(e.target.value)}
-                    name="Satuan Produk"
                   >
                     <option value="none">Pilih Satuan Produk</option>
                     <option value="Box">Box</option>
@@ -198,19 +163,14 @@ function TambahProduk() {
                 </div>
               </div>
               <div className="flex flex-col">
-                <label
-                  className="text-base font-medium text-birumuda"
-                  htmlFor="Tanggal Kedaluwarsa"
-                >
+                <label className="text-base font-medium text-birumuda">
                   Tanggal Kedaluwarsa
                 </label>
                 <input
                   className="border-b-2 w-1/2 p-1 text-gray-500 bg-white"
-                  id="Tanggal Kedaluwarsa"
                   type="date"
                   value={tanggalKedaluwarsa}
                   onChange={(e) => settanggalKedaluwarsa(e.target.value)}
-                  name="Tanggal Kedaluwarsa"
                   placeholder="Masukkan Tanggal Kedaluarsa"
                 />
               </div>
