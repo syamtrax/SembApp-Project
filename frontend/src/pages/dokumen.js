@@ -72,7 +72,7 @@ const Document = () => {
                 <div className="mb-4 border-b border-gray-200">
                     <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="tabDokumen" data-tabs-toggle="#tabDokumenContent" role="tablist">
                         <li className="mr-2" role="presentation">
-                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-black" id="all-tab" data-tabs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">all</button>
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-black" id="semua-tab" data-tabs-target="#semua" type="button" role="tab" aria-controls="semua" aria-selected="true">semua</button>
                         </li>
                         <li className="mr-2" role="presentation">
                             <button className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-black hover:border-gray-300 text-gray-500 border-gray-100" id="lunas-tab" data-tabs-target="#lunas" type="button" role="tab" aria-controls="lunas" aria-selected="false">Lunas</button>
@@ -86,7 +86,7 @@ const Document = () => {
                     </ul>
                 </div>
                 <div id="tabDokumenContent">
-                    <div className="p-4" id="all" role="tabpanel" aria-labelledby="all-tab">
+                    <div className="p-4" id="semua" role="tabpanel" aria-labelledby="semua-tab">
                     </div>
                     <div className="hidden p-4" id="lunas" role="tabpanel" aria-labelledby="lunas-tab">
                     </div>
