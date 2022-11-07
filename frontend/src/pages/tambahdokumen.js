@@ -10,6 +10,24 @@ function TambahDokumen() {
   const [kategoriDokumen, setkategoriDokumen] = useState("");
   const [deskripsiDokumen, setdeskripsiDokumen] = useState("");
   const [uploadBukti, setuploadBukti] = useState(null);
+  const [msg, setMsg] = useState("");
+
+  const saveDokumen = async (e) => {
+    e.preventDefautl();
+    try {
+      await axios("http://localhost:5000/dokumen", {
+        namaDokumen,
+        kategoriDokumen,
+        deskripsiDokumen,
+        uploadBukti,
+      });
+      Navigate("/dokumen");
+    } catch (error) {
+      if (error.response) {
+        setMsg(error.response.data.setMsg);
+      }
+    }
+  };
 
   return (
     <div className="bg-abumuda w-full h-full flex justify-center font-inter">
