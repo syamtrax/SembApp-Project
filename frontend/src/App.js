@@ -8,6 +8,7 @@ import TambahProduk from "./pages/tambahproduk";
 import Dokumen from "./pages/dokumen";
 import TambahDokumen from "./pages/tambahdokumen";
 import EditProduk from "./pages/editproduk";
+import EditDokumen from "./pages/editdokumen";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/produk" element={<Produk />} />
         <Route path="/tambahproduk" element={<TambahProduk />} />
         <Route path="/produk/editproduk/:kode" element={<EditProduk />} />
+        <Route path="/dokumen/editdokumen/:id" element={<EditDokumen />} />
         <Route path="/dokumen" element={<Dokumen />} />
         <Route path="/tambahdokumen" element={<TambahDokumen />} />
       </Routes>

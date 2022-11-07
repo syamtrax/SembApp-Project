@@ -27,6 +27,13 @@ import {
 import { verifyToken } from "../middle/verifyToken.js";
 
 import { refreshToken } from "../controllers/refreshToken.js";
+import {
+  createDocument,
+  deleteDocument,
+  getDocument,
+  updateDocument,
+  getDocumentByID
+} from "../controllers/documentController.js";
 
 const router = express.Router();
 
@@ -50,5 +57,11 @@ router.get("/produk/:kodeProduk", getProductByID);
 router.post("/produk", createProduct);
 router.patch("/produk/:kodeProduk", updateProduct);
 router.delete("/produk/:kodeProduk", deleteProduct);
+
+router.get("/dokumen", getDocument);
+router.get("/dokumen/:id", getDocumentByID);
+router.post("/dokumen", createDocument);
+router.patch("/dokumen/:id", updateDocument);
+router.delete("/dokumen/:id", deleteDocument);
 
 export default router;

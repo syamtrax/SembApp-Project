@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { BiChevronRight } from "react-icons/bi";
 import { HiArrowLeft } from "react-icons/hi";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
-function TambahDokumen() {
+function EditDokumen() {
   const [namaDokumen, setnamaDokumen] = useState("");
   const [kategoriDokumen, setkategoriDokumen] = useState("");
   const [deskripsiDokumen, setdeskripsiDokumen] = useState("");
   const [uploadBukti, setuploadBukti] = useState(null);
   const [msg, setMsg] = useState("");
-  const [namaPengguna, setNama] = useState("");
+  const { id } = useParams();
+
+  const [nama, setNama] = useState("");
   const navigate = useNavigate();
 
   const refreshToken = async () => {
@@ -30,12 +32,11 @@ function TambahDokumen() {
   const saveDokumen = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/dokumen", {
+      await axios.patch(`http://localhost:5000/dokumen/${id}`, {
         namaDokumen,
         kategoriDokumen,
         deskripsiDokumen,
         uploadBukti,
-        namaPengguna,
       });
       navigate("/dokumen");
     } catch (error) {
@@ -46,8 +47,17 @@ function TambahDokumen() {
   };
 
   useEffect(() => {
+    getDocumentById();
     refreshToken();
   }, []);
+
+  const getDocumentById = async () => {
+    const response = await axios.get(`http://localhost:5000/dokumen/${id}}`);
+    setnamaDokumen(response.data.namaDokumen);
+    setkategoriDokumen(response.data.kategoriDokumen);
+    setdeskripsiDokumen(response.data.deskripsiDokumen);
+    //setuploadBukti(response.data.uploadBukti);
+  };
 
   return (
     <div className="bg-abumuda w-full h-full flex justify-center font-inter">
@@ -148,15 +158,20 @@ function TambahDokumen() {
                   )}
                 </div>
               </div>
+              <div className="flex justify-end mt-6 gap-6">
+                <Link to="/dokumen">
+                  <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
+                    Batal
+                  </button>
+                </Link>
+                <button
+                  className="w-28 py-1 border border-birumuda bg-birumuda text-white font-semibold rounded-full hover:underline"
+                  type="submit"
+                >
+                  Simpan
+                </button>
+              </div>
             </form>
-            <div className="flex justify-end mt-6 gap-6">
-              {/* <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
-                Batal
-              </button> */}
-              <button className="w-28 py-1 border border-birumuda bg-birumuda text-white font-semibold rounded-full hover:underline">
-                Simpan
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -164,4 +179,4 @@ function TambahDokumen() {
   );
 }
 
-export default TambahDokumen;
+export default EditDokumen;

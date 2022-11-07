@@ -145,10 +145,10 @@ const Product = () => {
                                 {dat.kategoriProduk}
                               </td>
                               <td className="w-1/5 text-center">
-                                {dat.hargaJual}
+                                {dat.hargaBeli}
                               </td>
                               <td className="w-1/5 text-center">
-                                {dat.hargaBeli}
+                                {dat.hargaJual}
                               </td>
                               <td className="w-1/5 text-center">
                                 {dat.stokProduk}
