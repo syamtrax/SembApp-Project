@@ -130,9 +130,9 @@ function TambahDokumen() {
               </div>
             </form>
             <div className="flex justify-end mt-6 gap-6">
-              <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
+              {/* <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
                 Batal
-              </button>
+              </button> */}
               <button className="w-28 py-1 border border-birumuda bg-birumuda text-white font-semibold rounded-full hover:underline">
                 Simpan
               </button>

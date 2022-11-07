@@ -195,11 +195,11 @@ function TambahProduk() {
                 />
               </div>
               <div className="flex justify-end mt-6 gap-6">
-                <Link to = "/produk">
+                {/* <Link to = "/produk">
                 <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
                   Batal
                 </button>
-                </Link>
+                </Link> */}
                 <button
                   className="w-28 py-1 border border-birumuda bg-birumuda text-white font-semibold rounded-full hover:underline"
                   type="submit"

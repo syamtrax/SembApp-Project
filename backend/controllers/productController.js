@@ -1,6 +1,5 @@
 import Product from "../models/productModel.js";
 import { useState, useEffect } from "react";
-import jwt_decode from "jwt-decode";
 
 export const getProduct = async (req, res) => {
   try {
