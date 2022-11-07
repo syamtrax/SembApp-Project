@@ -8,6 +8,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
+
 const Document = () => {
   const [dokumen, setDokumen] = useState([]);
 
@@ -63,12 +64,13 @@ const Document = () => {
             <div className="text-2xl font-bold pb-4">Halaman Dokumen</div>
             <div className="relative"></div>
             <div className="flex my-4 gap-6 justify-between">
-              <Link to="/tambahdokumen">
-                <div className="w-1/6 bg-white shadow-md rounded-md flex h-8">
-                  <button className="w-full text-sm text-center items-center content-center  text-white transition-colors duration-200 transform bg-birumuda rounded-md hover:bg-sky-400">
-                    + Tambah Dokumen
-                  </button>
-                </div>
+              <Link
+                className="w-1/6 bg-white shadow-md rounded-md flex h-8"
+                to="/tambahdokumen"
+              >
+                <button className="w-full text-sm text-center items-center content-center  text-white transition-colors duration-200 transform bg-birumuda rounded-md hover:bg-sky-400">
+                  + Tambah Dokumen
+                </button>
               </Link>
               <div className="w-1/3 bg-white shadow-md rounded-md h-8">
                 <div className="w-full text-center items-center content-center">
@@ -103,9 +105,26 @@ const Document = () => {
                       </button>
                     </div>
                   </div>
+                </div>   
+                <div className="mb-4 border-b border-gray-200">
+                    <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="tabDokumen" data-tabs-toggle="#tabDokumenContent" role="tablist">
+                        <li className="mr-2" role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-black" id="semua-tab" data-tabs-target="#semua" type="button" role="tab" aria-controls="semua" aria-selected="true">Semua</button>
+                        </li>
+                        <li className="mr-2" role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-black hover:border-gray-300 text-gray-500 border-gray-100" id="lunas-tab" data-tabs-target="#lunas" type="button" role="tab" aria-controls="lunas" aria-selected="false">Lunas</button>
+                        </li>
+                        <li className="mr-2" role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-black hover:border-gray-300  text-gray-500 border-gray-100" id="hutang-tab" data-tabs-target="#hutang" type="button" role="tab" aria-controls="hutang" aria-selected="false">Hutang</button>
+                        </li>
+                        <li role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-black hover:border-gray-300  text-gray-500 border-gray-100" id="kulakan-tab" data-tabs-target="#kulakan" type="button" role="tab" aria-controls="kulakan" aria-selected="false">Kulakan</button>
+                        </li>
+                    </ul>
                 </div>
-                <div className="">
-                  <table className="w-full table-fixed justify-center overflow-y-auto">
+                <div id="tabDokumenContent">
+                    <div className="p-4" id="semua" role="tabpanel" aria-labelledby="semua-tab">
+                    <table className="w-full table-fixed justify-center overflow-y-auto">
                     <thead className="">
                       <tr className="border-b-2 border-gray-300">
                         <th className="w-1/6 py-2">DESKRIPSI</th>
@@ -158,6 +177,13 @@ const Document = () => {
                       })}
                     </tbody>
                   </table>
+                    </div>
+                    <div className="hidden p-4" id="lunas" role="tabpanel" aria-labelledby="lunas-tab">
+                    </div>
+                    <div className="hidden p-4" id="hutang" role="tabpanel" aria-labelledby="hutang-tab">
+                    </div>
+                    <div className="hidden p-4" id="kulakan" role="tabpanel" aria-labelledby="kulakan-tab">
+                    </div>
                 </div>
               </div>
             </div>
