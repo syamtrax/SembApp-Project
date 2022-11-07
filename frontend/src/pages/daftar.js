@@ -62,7 +62,7 @@ function Daftar() {
     } else {
       setuserError("");
       setpassError("");
-      setkonfpassError("")
+      setkonfpassError("");
       setnumError("");
       setnamaTokorror("");
       setaddError("");

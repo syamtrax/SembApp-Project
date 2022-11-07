@@ -6,10 +6,9 @@ import kasir from "../assets/Group.png";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import  { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
 const Dashboard = () => {
-
   const [transaction, setTransaction] = useState([]);
   const [nama, setNama] = useState("");
   const [namaToko, setNamaToko] = useState("");
@@ -32,7 +31,6 @@ const Dashboard = () => {
       }
     }
   };
-
 
   transaction.map((trans) => {
     const date = new Date(trans.createdAt);

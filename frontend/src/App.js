@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
+import Login from "./pages/login";
 import Daftar from "./pages/daftar";
-import Dashboard from "./pages/dashboard.js";
-import Login from "./pages/login.js";
-import Produk from "./pages/produk.js";
-import Dokumen from "./pages/dokumen.js";
+import Dashboard from "./pages/dashboard";
+import Produk from "./pages/produk";
+import TambahProduk from "./pages/tambahproduk";
+import Dokumen from "./pages/dokumen";
+import TambahDokumen from "./pages/tambahdokumen";
 
 function App() {
   return (
@@ -14,7 +16,9 @@ function App() {
         <Route path="/daftar" element={<Daftar />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/produk" element={<Produk />} />
+        <Route path="/tambahproduk" element={<TambahProduk />} />
         <Route path="/dokumen" element={<Dokumen />} />
+        <Route path="/tambahdokumen" element={<TambahDokumen />} />
       </Routes>
     </BrowserRouter>
   );
