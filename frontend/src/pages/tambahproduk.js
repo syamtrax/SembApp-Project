@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../components/navbar";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BiChevronRight } from "react-icons/bi";
 import { HiArrowLeft } from "react-icons/hi";
 import axios from "axios";
@@ -18,20 +18,13 @@ function TambahProduk() {
   const [msg, setMsg] = useState("");
 
   const [namaPengguna, setNama] = useState("");
-  const [namaToko, setNamaToko] = useState("");
-  const [token, setToken] = useState("");
-  const [expire, setExpire] = useState("");
-  //const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const refreshToken = async () => {
     try {
       const response = await axios.get("http://localhost:5000/token");
-      setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
       setNama(decoded.namaPengguna);
-      setNamaToko(decoded.namaToko);
-      setExpire(decoded.exp);
     } catch (error) {
       if (error.response) {
         navigate("/");
@@ -202,9 +195,11 @@ function TambahProduk() {
                 />
               </div>
               <div className="flex justify-end mt-6 gap-6">
+                <Link to = "/produk">
                 <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
                   Batal
                 </button>
+                </Link>
                 <button
                   className="w-28 py-1 border border-birumuda bg-birumuda text-white font-semibold rounded-full hover:underline"
                   type="submit"

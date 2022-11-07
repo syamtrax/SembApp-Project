@@ -3,7 +3,6 @@ import Navbar from "../components/navbar.js";
 import { BiChevronRight } from "react-icons/bi";
 import { AiOutlineSearch } from "react-icons/ai";
 import { HiFilter } from "react-icons/hi";
-import fotoprofil from "../assets/avatardefault_92824.png";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
@@ -12,20 +11,13 @@ const Product = () => {
   const [produk, setProduk] = useState([]);
 
   const [nama, setNama] = useState("");
-  const [namaToko, setNamaToko] = useState("");
-  const [token, setToken] = useState("");
-  const [expire, setExpire] = useState("");
-  //const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const refreshToken = async () => {
     try {
       const response = await axios.get("http://localhost:5000/token");
-      setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
       setNama(decoded.namaPengguna);
-      setNamaToko(decoded.namaToko);
-      setExpire(decoded.exp);
     } catch (error) {
       if (error.response) {
         navigate("/");
@@ -165,13 +157,13 @@ const Product = () => {
                                 {" "}
                                 <Link
                                   to={`editproduk/${dat.kodeProduk}`}
-                                  className="button is-small is-info mr-2"
+                                  className="font-bold text-birumuda mr-2"
                                 >
                                   Edit
                                 </Link>
                                 <button
-                                  onClick={() => deleteProduct(dat.id)}
-                                  className="button is-small is-danger"
+                                  onClick={() => deleteProduct(dat.kodeProduk)}
+                                  className="font-bold text-red-700"
                                 >
                                   Delete
                                 </button>
