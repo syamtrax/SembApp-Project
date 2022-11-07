@@ -7,6 +7,7 @@ import Produk from "./pages/produk";
 import TambahProduk from "./pages/tambahproduk";
 import Dokumen from "./pages/dokumen";
 import TambahDokumen from "./pages/tambahdokumen";
+import EditProduk from "./pages/editproduk";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/produk" element={<Produk />} />
         <Route path="/tambahproduk" element={<TambahProduk />} />
+        <Route path="/produk/editproduk/:kode" element={<EditProduk />} />
         <Route path="/dokumen" element={<Dokumen />} />
         <Route path="/tambahdokumen" element={<TambahDokumen />} />
       </Routes>

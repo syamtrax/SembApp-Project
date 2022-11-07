@@ -16,6 +16,14 @@ import {
   Logout,
 } from "../controllers/userController.js";
 
+import {
+  getProduct,
+  getProductByID,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+} from "../controllers/productController.js";
+
 import { verifyToken } from "../middle/verifyToken.js";
 
 import { refreshToken } from "../controllers/refreshToken.js";
@@ -36,5 +44,11 @@ router.post("/user", Register);
 router.post("/login", Login);
 router.get("/token", refreshToken);
 router.delete("/logout", Logout);
+
+router.get("/produk", getProduct);
+router.get("/produk/:kodeProduk", getProductByID);
+router.post("/produk", createProduct);
+router.patch("/produk/:kodeProduk", updateProduct);
+router.delete("/produk/:kodeProduk", deleteProduct);
 
 export default router;

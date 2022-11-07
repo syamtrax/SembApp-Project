@@ -3,6 +3,9 @@ GET http://localhost:5000/transaction
 GET http://localhost:5000/transaction/1
 
 ###
+GET http://localhost:5000/produk/1
+
+###
 POST http://localhost:5000/transaction
 Content-Type: application/json
 

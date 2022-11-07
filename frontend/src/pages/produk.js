@@ -6,11 +6,54 @@ import { HiFilter } from "react-icons/hi";
 import fotoprofil from "../assets/avatardefault_92824.png";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 const Product = () => {
+  const [produk, setProduk] = useState([]);
+
+  const [nama, setNama] = useState("");
+  const [namaToko, setNamaToko] = useState("");
+  const [token, setToken] = useState("");
+  const [expire, setExpire] = useState("");
+  //const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+
+  const refreshToken = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/token");
+      setToken(response.data.accessToken);
+      const decoded = jwt_decode(response.data.accessToken);
+      setNama(decoded.namaPengguna);
+      setNamaToko(decoded.namaToko);
+      setExpire(decoded.exp);
+    } catch (error) {
+      if (error.response) {
+        navigate("/");
+      }
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+    refreshToken();
+  }, []);
+
+  const getProduct = async () => {
+    const response = await axios.get("http://localhost:5000/produk");
+    setProduk(response.data);
+  };
+
+  const deleteProduct = async (id) => {
+    try {
+      await axios.delete(`http://localhost:5000/produk/${id}`);
+      getProduct();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
-      <div className="bg-abumuda w-full flex justify-center max-h-screen font-inter">
+      <div className="bg-abumuda w-full flex justify-center h-screen font-inter">
         <div className="absolute">
           <Navbar />
         </div>
@@ -79,18 +122,64 @@ const Product = () => {
                   </div>
                 </div>
 
-                <div className="">
-                  <table className="flex table-fixed justify-center overflow-y-auto h-80">
-                    <tbody>
-                      <tr className="border-b-2 h-10">
-                        <td className="w-40 text-center"></td>
-                        <td className="w-56"></td>
-                        <td className="w-48"></td>
-                        <td className="w-32"></td>
-                        <td className="w-32">
-                          <button>Button</button>
-                        </td>
+                <div className="pb-10">
+                  <table className="w-full table-fixed justify-center overflow-y-auto">
+                    <thead className="">
+                      <tr className="border-b-2 border-gray-300">
+                        <th className="w-1/6 py-2">KODE</th>
+                        <th className="w-1/5">NAMA</th>
+                        <th className="w-1/5">KATEGORI</th>
+                        <th className="w-1/5">HARGA BELI</th>
+                        <th className="w-1/5">HARGA JUAL</th>
+                        <th className="w-1/6">STOK</th>
+                        <th className="w-1/5">EDIT</th>
                       </tr>
+                    </thead>
+                    <tbody>
+                      {produk.map((dat) => {
+                        if (dat.namaPengguna === nama) {
+                          return (
+                            <tr
+                              key={dat.kodeProduk}
+                              className="py-8 border-b-2 border-gray-300"
+                            >
+                              <td className="w-1/5 text-center">
+                                {dat.kodeProduk}
+                              </td>
+                              <td className="w-1/5 text-left">
+                                {dat.namaProduk}
+                              </td>
+                              <td className="w-1/5 text-center">
+                                {dat.kategoriProduk}
+                              </td>
+                              <td className="w-1/5 text-center">
+                                {dat.hargaJual}
+                              </td>
+                              <td className="w-1/5 text-center">
+                                {dat.hargaBeli}
+                              </td>
+                              <td className="w-1/5 text-center">
+                                {dat.stokProduk}
+                              </td>
+                              <td className="w-1/5 text-center">
+                                {" "}
+                                <Link
+                                  to={`editproduk/${dat.kodeProduk}`}
+                                  className="button is-small is-info mr-2"
+                                >
+                                  Edit
+                                </Link>
+                                <button
+                                  onClick={() => deleteProduct(dat.id)}
+                                  className="button is-small is-danger"
+                                >
+                                  Delete
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        }
+                      })}
                     </tbody>
                   </table>
                 </div>
