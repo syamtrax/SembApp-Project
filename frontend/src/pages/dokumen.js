@@ -65,27 +65,32 @@ const Document = () => {
                       </button>
                     </div>
                   </div>
+                </div>   
+                <div className="mb-4 border-b border-gray-200">
+                    <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" id="tabDokumen" data-tabs-toggle="#tabDokumenContent" role="tablist">
+                        <li className="mr-2" role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-black" id="all-tab" data-tabs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="true">Semua</button>
+                        </li>
+                        <li className="mr-2" role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-black hover:border-gray-300 text-gray-500 border-gray-100" id="lunas-tab" data-tabs-target="#lunas" type="button" role="tab" aria-controls="lunas" aria-selected="false">Lunas</button>
+                        </li>
+                        <li className="mr-2" role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-black hover:border-gray-300  text-gray-500 border-gray-100" id="hutang-tab" data-tabs-target="#hutang" type="button" role="tab" aria-controls="hutang" aria-selected="false">Hutang</button>
+                        </li>
+                        <li role="presentation">
+                            <button className="inline-block p-4 rounded-t-lg border-b-2 border-transparent hover:text-black hover:border-gray-300  text-gray-500 border-gray-100" id="kulakan-tab" data-tabs-target="#kulakan" type="button" role="tab" aria-controls="kulakan" aria-selected="false">Kulakan</button>
+                        </li>
+                    </ul>
                 </div>
-                <div className="">
-                  <table className="flex table-fixed justify-center py-2 overflow-y-auto h-full">
-                    <tbody>
-                      <tr className="border-b-2 h-16">
-                        <td className="w-40 text-center"></td>
-                        <td className="w-56">
-                          <div className="font-bold"></div>
-                          <div></div>
-                        </td>
-                        <td className="w-48">
-                          <div className="text-lg font-bold">Rp</div>
-                          <div></div>
-                        </td>
-                        <td className="w-32"></td>
-                        <td className="w-32">
-                          <button>Button</button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                <div id="tabDokumenContent">
+                    <div className="p-4" id="all" role="tabpanel" aria-labelledby="all-tab">
+                    </div>
+                    <div className="hidden p-4" id="lunas" role="tabpanel" aria-labelledby="lunas-tab">
+                    </div>
+                    <div className="hidden p-4" id="hutang" role="tabpanel" aria-labelledby="hutang-tab">
+                    </div>
+                    <div className="hidden p-4" id="kulakan" role="tabpanel" aria-labelledby="kulakan-tab">
+                    </div>
                 </div>
               </div>
             </div>
