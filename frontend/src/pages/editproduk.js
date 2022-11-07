@@ -20,20 +20,13 @@ function EditProduk() {
   const id = kode;
 
   const [nama, setNama] = useState("");
-  const [namaToko, setNamaToko] = useState("");
-  const [token, setToken] = useState("");
-  const [expire, setExpire] = useState("");
-  //const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   const refreshToken = async () => {
     try {
       const response = await axios.get("http://localhost:5000/token");
-      setToken(response.data.accessToken);
       const decoded = jwt_decode(response.data.accessToken);
       setNama(decoded.namaPengguna);
-      setNamaToko(decoded.namaToko);
-      setExpire(decoded.exp);
     } catch (error) {
       if (error.response) {
         navigate("/");

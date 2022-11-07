@@ -26,11 +26,17 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="flex text-base justify-start text-center items-center">
-            <div className="px-5 bg-white hover:font-bold">Beranda</div>
-            <div className="px-5 bg-white hover:font-bold">Produk</div>
+            <Link to="/dashboard">
+              <div className="px-5 bg-white hover:font-bold">Beranda</div>
+            </Link>
+            <Link to="/produk">
+              <div className="px-5 bg-white hover:font-bold">Produk</div>
+            </Link>
+            <Link to="/dokumen">
+              <div className="px-5 bg-white hover:font-bold">Dokumen</div>
+            </Link>
             <div className="px-5 bg-white hover:font-bold">Transaksi</div>
-            <div className="px-5 bg-white hover:font-bold">Keuangan</div>
-            <div className="px-5 bg-white hover:font-bold">Dokumen</div>
+            <div className="px-5 bg-white hover:font-bold">Keuangan</div> 
           </div>
         </div>
         <div className="flex text-base text-center items-center gap-4">

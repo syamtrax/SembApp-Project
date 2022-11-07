@@ -97,7 +97,7 @@ const Dashboard = () => {
 
   return (
     <>
-      <div className="bg-abumuda w-full flex justify-center max-h-screen font-inter">
+      <div className="bg-abumuda w-full flex justify-center h-screen font-inter">
         <div className="absolute">
           <Navbar />
         </div>
@@ -188,7 +188,7 @@ const Dashboard = () => {
                     <div className="text-base">Beberapa transaksi terkini</div>
                   </div>
                 </div>
-                <div className="">
+                <div className="h-full">
                   <table className="flex table-fixed justify-center py-2 overflow-y-auto h-80">
                     <tbody>
                       {transaction.map((trans) => {
