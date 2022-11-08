@@ -75,12 +75,12 @@ function EditDokumen() {
             <span className="text-gray-500 self-center">
               <BiChevronRight />
             </span>
-            <span>Tambah Dokumen</span>
+            <span>Edit Dokumen</span>
           </div>
-          <h1 className="text-2xl font-bold pb-4">Halaman Tambah Dokumen</h1>
+          <h1 className="text-2xl font-bold pb-4">Halaman Edit Dokumen</h1>
           <div className="flex flex-col w-full h-full rounded-md shadow-md bg-white p-6">
             <div className="flex justify-between mb-3">
-              <h2 className="text-lg font-semibold">Tambah Dokumen</h2>
+              <h2 className="text-lg font-semibold">Edit Dokumen</h2>
               <Link to="/dokumen">
                 <button className="flex font-medium items-center text-birumuda hover:underline">
                   <HiArrowLeft />
