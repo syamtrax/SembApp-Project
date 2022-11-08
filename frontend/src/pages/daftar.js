@@ -6,7 +6,7 @@ import axios from "axios";
 function Daftar() {
   const [namaPengguna, setnamaPengguna] = useState("");
   const [sandi, setsandi] = useState("");
-  const [konfsandi, setKonfsandi] = useState("");
+  const [confSandi, setKonfsandi] = useState("");
   const [telp, settelp] = useState("");
   const [namaToko, setnamaToko] = useState("");
   const [alamatToko, setalamatToko] = useState("");
@@ -23,6 +23,7 @@ function Daftar() {
         telp,
         namaToko,
         alamatToko,
+        confSandi,
       });
       navigate("/");
     } catch (error) {
@@ -32,14 +33,14 @@ function Daftar() {
     }
   };
 
-  const konfirmasiKataSandi = (e) => {
+  /*const konfirmasiKataSandi = (e) => {
     setKonfsandi(konfsandi);
     if (sandi !== konfsandi) {
       setIsError("Kata sandi tidak sama");
     } else {
       setIsError("");
     }
-  };
+  };*/
 
   return (
     <div className="grid grid-cols-2">
@@ -103,8 +104,8 @@ function Daftar() {
                         className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
                         type="password"
                         required
-                        value={konfsandi}
-                        onChange={konfirmasiKataSandi}
+                        value={confSandi}
+                        onChange={(e) => setKonfsandi(e.target.value)}
                         placeholder="Masukkan Ulang Kata Sandi"
                       />
                       {isError && <p className="text-danger">{isError}</p>}

@@ -1,6 +1,4 @@
 import Transaction from "../models/transactionModel.js";
-import { Op } from "sequelize";
-import { response } from "express";
 
 export const getTransaction = async (req, res) => {
   try {

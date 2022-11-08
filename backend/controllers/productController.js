@@ -1,5 +1,4 @@
 import Product from "../models/productModel.js";
-import { useState, useEffect } from "react";
 
 export const getProduct = async (req, res) => {
   try {

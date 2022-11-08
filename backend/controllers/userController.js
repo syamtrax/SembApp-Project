@@ -1,6 +1,4 @@
 import User from "../models/userModel.js";
-import { Op } from "sequelize";
-import { response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -55,8 +53,10 @@ export const deleteUser = async (req, res) => {
 };
 
 export const Register = async (req, res) => {
-  const { namaToko, alamatToko, namaPengguna, sandi, email, telp, img } =
+    
+  const { namaToko, alamatToko, namaPengguna, sandi, confSandi, email, telp, img } =
     req.body;
+    if(sandi !== confSandi) return res.status(400).json({msg: "Password dan Confirm Password tidak cocok"});
   const salt = await bcrypt.genSalt();
   const available = await User.findAll({
     where: {
