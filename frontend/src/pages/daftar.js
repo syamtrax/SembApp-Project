@@ -12,7 +12,6 @@ function Daftar() {
   const [alamatToko, setalamatToko] = useState("");
   const navigate = useNavigate();
   const [msg, setMsg] = useState("");
-  const [isError, setIsError] = useState("");
 
   const saveUser = async (e) => {
     e.preventDefault();
@@ -33,15 +32,6 @@ function Daftar() {
     }
   };
 
-  /*const konfirmasiKataSandi = (e) => {
-    setKonfsandi(konfsandi);
-    if (sandi !== konfsandi) {
-      setIsError("Kata sandi tidak sama");
-    } else {
-      setIsError("");
-    }
-  };*/
-
   return (
     <div className="grid grid-cols-2">
       <div>
@@ -58,6 +48,7 @@ function Daftar() {
                 <Link to="/">Masuk</Link>
               </a>
             </p>
+            <p className="text-base text-red-500 text-center">{msg}</p>
             <form onSubmit={saveUser}>
               <div className="flex flex-col">
                 <div className="flex flex-col">
@@ -68,7 +59,6 @@ function Daftar() {
                     >
                       Nama Pengguna
                     </label>
-                    <p className="text-base text-red-500">{msg}</p>
                   </div>
                   <input
                     className="border rounded-lg w-full p-2 text-gray-900 bg-white focus:border-black"
@@ -108,7 +98,6 @@ function Daftar() {
                         onChange={(e) => setKonfsandi(e.target.value)}
                         placeholder="Masukkan Ulang Kata Sandi"
                       />
-                      {isError && <p className="text-danger">{isError}</p>}
                     </div>
                   </div>
                   <div className="flex flex-col">
