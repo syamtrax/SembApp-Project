@@ -58,7 +58,7 @@ function TambahProduk() {
   }, []);
 
   return (
-    <div className="bg-abumuda w-full max-h-screen flex justify-center font-inter">
+    <div className="flex bg-abumuda w-full h-screen justify-center font-inter">
       <div className="absolute">
         <Navbar />
       </div>
@@ -76,7 +76,7 @@ function TambahProduk() {
             <span>Tambah Produk</span>
           </div>
           <h1 className="text-2xl font-bold pb-4">Halaman Tambah Produk</h1>
-          <div className="flex flex-col w-full h-full rounded-md shadow-md bg-white p-6">
+          <div className="flex flex-col rounded-md shadow-md bg-white p-6">
             <div className="flex justify-between mb-3">
               <h2 className="text-lg font-semibold">Tambah Produk</h2>
               <Link to="/produk">
@@ -97,6 +97,7 @@ function TambahProduk() {
                   value={kodeProduk}
                   onChange={(e) => setkodeProduk(e.target.value)}
                   placeholder="12345"
+                  required
                 />
               </div>
               <div className="flex flex-col">
@@ -109,6 +110,7 @@ function TambahProduk() {
                   value={namaProduk}
                   onChange={(e) => setnamaProduk(e.target.value)}
                   placeholder="Masukkan Nama Produk"
+                  required
                 />
               </div>
               <div className="flex flex-col">
@@ -120,6 +122,7 @@ function TambahProduk() {
                   type="text"
                   value={kategoriProduk}
                   onChange={(e) => setkategoriProduk(e.target.value)}
+                  required
                 >
                   <option value="none">Pilih Kategori Produk</option>
                   <option value="Beras">Beras</option>
@@ -138,6 +141,7 @@ function TambahProduk() {
                     value={hargaBeli}
                     onChange={(e) => sethargaBeli(e.target.value)}
                     placeholder="Masukkan Harga Beli"
+                    required
                   />
                 </div>
                 <div className="flex flex-col w-1/2">
@@ -150,6 +154,7 @@ function TambahProduk() {
                     value={hargaJual}
                     onChange={(e) => sethargaJual(e.target.value)}
                     placeholder="Masukkan Harga Jual"
+                    required
                   />
                 </div>
               </div>
@@ -164,6 +169,7 @@ function TambahProduk() {
                     value={stokProduk}
                     onChange={(e) => setstokProduk(e.target.value)}
                     placeholder="Masukkan Stok Produk"
+                    required
                   />
                 </div>
                 <div className="flex flex-col w-1/2">
@@ -175,6 +181,7 @@ function TambahProduk() {
                     type="text"
                     value={satuanProduk}
                     onChange={(e) => setsatuanProduk(e.target.value)}
+                    required
                   >
                     <option value="none">Pilih Satuan Produk</option>
                     <option value="Box">Box</option>
@@ -192,6 +199,7 @@ function TambahProduk() {
                   value={tanggalKedaluwarsa}
                   onChange={(e) => settanggalKedaluwarsa(e.target.value)}
                   placeholder="Masukkan Tanggal Kedaluarsa"
+                  required
                 />
               </div>
               <div className="flex justify-end mt-6 gap-6">

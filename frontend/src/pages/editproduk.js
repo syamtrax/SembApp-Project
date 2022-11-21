@@ -73,7 +73,7 @@ function EditProduk() {
   };
 
   return (
-    <div className="bg-abumuda w-full max-h-screen flex justify-center font-inter">
+    <div className="flex bg-abumuda w-full h-screen justify-center font-inter">
       <div className="absolute">
         <Navbar />
       </div>
@@ -91,7 +91,7 @@ function EditProduk() {
             <span>Edit Produk</span>
           </div>
           <h1 className="text-2xl font-bold pb-4">Halaman Edit Produk</h1>
-          <div className="flex flex-col w-full h-full rounded-md shadow-md bg-white p-6">
+          <div className="flex flex-col rounded-md shadow-md bg-white p-6">
             <div className="flex justify-between">
               <h2 className="text-lg font-semibold">Edit Produk</h2>
               <Link to="/produk">
@@ -250,9 +250,9 @@ function EditProduk() {
                 />
               </div>
               <div className="flex justify-end mt-6 gap-6">
-                <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
+                {/* <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
                   Batal
-                </button>
+                </button> */}
                 <button
                   className="w-28 py-1 border border-birumuda bg-birumuda text-white font-semibold rounded-full hover:underline"
                   type="submit"

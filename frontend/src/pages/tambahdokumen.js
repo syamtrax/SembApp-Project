@@ -50,7 +50,7 @@ function TambahDokumen() {
   }, []);
 
   return (
-    <div className="bg-abumuda w-full h-full flex justify-center font-inter">
+    <div className="flex bg-abumuda w-full h-screen justify-center font-inter">
       <div className="absolute">
         <Navbar />
       </div>
@@ -68,7 +68,7 @@ function TambahDokumen() {
             <span>Tambah Dokumen</span>
           </div>
           <h1 className="text-2xl font-bold pb-4">Halaman Tambah Dokumen</h1>
-          <div className="flex flex-col w-full h-full rounded-md shadow-md bg-white p-6">
+          <div className="flex flex-col rounded-md shadow-md bg-white p-6">
             <div className="flex justify-between mb-3">
               <h2 className="text-lg font-semibold">Tambah Dokumen</h2>
               <Link to="/dokumen">

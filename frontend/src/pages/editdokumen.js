@@ -60,7 +60,7 @@ function EditDokumen() {
   };
 
   return (
-    <div className="bg-abumuda w-full h-full flex justify-center font-inter">
+    <div className="flex bg-abumuda w-full h-screen justify-center font-inter">
       <div className="absolute">
         <Navbar />
       </div>
@@ -160,9 +160,9 @@ function EditDokumen() {
               </div>
               <div className="flex justify-end mt-6 gap-6">
                 <Link to="/dokumen">
-                  <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
+                  {/* <button className="w-28 py-1 border border-birumuda text-birumuda font-semibold rounded-full hover:underline">
                     Batal
-                  </button>
+                  </button> */}
                 </Link>
                 <button
                   className="w-28 py-1 border border-birumuda bg-birumuda text-white font-semibold rounded-full hover:underline"

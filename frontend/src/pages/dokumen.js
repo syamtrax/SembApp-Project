@@ -63,16 +63,15 @@ const Document = () => {
   };
   return (
     <>
-      <div className="bg-abumuda w-full flex justify-center max-h-screen font-inter">
+      <div className="bg-abumuda w-full flex justify-center h-screen font-inter">
         <div className="absolute">
           <Navbar />
         </div>
         <div className="container py-16">
           <div className="content-center items-center">
-            <div className="pt-6 flex justify-content">
-              {" "}
-              Beranda
-              <span className="self-center">
+            <div className="pt-6 flex justify-start pb-3 text-xs">
+              <span className="text-gray-500">Beranda</span>
+              <span className="text-gray-500 self-center">
                 <BiChevronRight />
               </span>
               Dokumen
